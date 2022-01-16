@@ -1,7 +1,6 @@
-import type { NextPage } from 'next';
 import { useSession, signIn, signOut } from 'next-auth/react';
 
-const Home: NextPage = () => {
+const IndexPage = () => {
   const { data: session } = useSession();
 
   if (session) {
@@ -26,4 +25,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default IndexPage;
