@@ -1,5 +1,7 @@
 import { useSession, signIn, signOut } from 'next-auth/react';
 
+import { CALLBACK_URL } from '../src/constants/urls';
+
 const IndexPage = () => {
   const { data: session } = useSession();
 
@@ -14,11 +16,7 @@ const IndexPage = () => {
   return (
     <>
       Not signed in <br />
-      <button
-        onClick={() =>
-          signIn('spotify', { callbackUrl: 'http://localhost:3000' })
-        }
-      >
+      <button onClick={() => signIn('spotify', { callbackUrl: CALLBACK_URL })}>
         Sign in
       </button>
     </>
