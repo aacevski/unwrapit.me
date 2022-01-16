@@ -1,3 +1,4 @@
+import useSWR from 'swr';
 import { useSession, signIn, signOut } from 'next-auth/react';
 import { Player } from '@remotion/player';
 

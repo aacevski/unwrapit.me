@@ -4,4 +4,5 @@ export type User = {
   picture?: string | null;
   image?: string | null;
   accessToken?: string | null;
+  sub: string | null;
 };
