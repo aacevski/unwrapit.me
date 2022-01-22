@@ -1,34 +1,21 @@
-import useSWR from 'swr';
-import { useSession, signIn, signOut } from 'next-auth/react';
-import { Player } from '@remotion/player';
+import { GetServerSideProps } from 'next';
+import { Avatar, Text, VStack } from '@chakra-ui/react';
+import { signIn, getSession } from 'next-auth/react';
 
-import HelloWorld from '../src/remotion/hello-word';
 import { CALLBACK_URL } from '../src/constants/urls';
+import { User } from '../src/types/user';
 
-const IndexPage = () => {
-  const { data: session } = useSession();
+type Props = {
+  user: User;
+};
 
-  if (session) {
+const IndexPage = ({ user }: Props) => {
+  if (user) {
     return (
-      <>
-        Signed in as {session?.user?.email} <br />
-        <button onClick={() => signOut()}>Sign out</button>
-        <Player
-          component={HelloWorld}
-          durationInFrames={120}
-          compositionWidth={1920}
-          compositionHeight={1080}
-          fps={30}
-          style={{
-            width: 1280,
-            height: 720,
-          }}
-          controls
-          inputProps={{
-            text: 'world',
-          }}
-        />
-      </>
+      <VStack align="center" justify="center" w="full">
+        <Avatar size="lg" src={user?.picture || ''} />
+        <Text>Hey, {user?.name}!</Text>
+      </VStack>
     );
   }
   return (
@@ -39,6 +26,12 @@ const IndexPage = () => {
       </button>
     </>
   );
+};
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  // const session = await getSession(context);
+
+  return { props: { user: null } };
 };
 
 export default IndexPage;
