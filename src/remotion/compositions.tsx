@@ -1,16 +1,16 @@
 import React from 'react';
 import { Composition } from 'remotion';
 
-import HelloWorld from './hello-word';
+import TopArtist from './top-artist';
 
 const Compositions = () => {
   return (
     <>
       <Composition
-        component={HelloWorld}
+        component={TopArtist}
         durationInFrames={120}
-        width={1920}
         height={1080}
+        width={1080}
         fps={30}
         id="hello-world"
       />

@@ -10,10 +10,9 @@ import {
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 import { IoSunnySharp, IoMoon } from 'react-icons/io5';
+import ColorModeSwitch from '../color-mode-switch';
 
 const Header = () => {
-  const { colorMode, toggleColorMode } = useColorMode();
-
   return (
     <HStack
       as="nav"
@@ -41,24 +40,7 @@ const Header = () => {
             <Heading size="sm">unwrapped.me</Heading>
           </Link>
         </NextLink>
-        <IconButton
-          variant="ghost"
-          aria-label="Color mode switch"
-          rounded="full"
-          _hover={{
-            bg: useColorModeValue('#F2F2F2', '#383A3E'),
-            rounded: 'full',
-          }}
-          size="md"
-          onClick={toggleColorMode}
-          icon={
-            colorMode === 'light' ? (
-              <Icon as={IoMoon} />
-            ) : (
-              <Icon as={IoSunnySharp} />
-            )
-          }
-        />
+        <ColorModeSwitch size="md" />
       </Container>
     </HStack>
   );
