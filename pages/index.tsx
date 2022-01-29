@@ -4,7 +4,7 @@ import useSWR from 'swr';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { Avatar, Text, VStack } from '@chakra-ui/react';
+import { Avatar, Text, VStack, Container } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
 import TopArtist from '../src/remotion/top-artist';
@@ -51,28 +51,35 @@ const IndexPage = ({ user }: Props) => {
   }, [data]);
 
   return (
-    <VStack align="center" justify="center" w="full" px={4}>
+    <VStack align="center" justify="center" w="full" pb={20}>
       <Avatar size="lg" src={user?.picture || ''} />
       <Text>hey, {user?.name}!</Text>
       {data && (
-        <Player
-          ref={player}
-          component={TopArtist}
-          durationInFrames={120}
-          compositionHeight={1080}
-          compositionWidth={1080}
-          fps={30}
-          style={{
-            margin: 'auto',
-            width: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-          }}
-          inputProps={{
-            artist: data?.items[0],
-          }}
-          controls
-        />
+        <Container
+          display="flex"
+          maxW="container.sm"
+          px={{ base: 4, lg: 0 }}
+          centerContent
+        >
+          <Player
+            ref={player}
+            component={TopArtist}
+            durationInFrames={120}
+            compositionHeight={1080}
+            compositionWidth={1080}
+            fps={30}
+            style={{
+              margin: 'auto',
+              width: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+            }}
+            inputProps={{
+              artist: data?.items[0],
+            }}
+            controls
+          />
+        </Container>
       )}
     </VStack>
   );
