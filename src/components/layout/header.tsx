@@ -4,12 +4,9 @@ import {
   Link,
   useColorModeValue,
   Container,
-  IconButton,
-  useColorMode,
-  Icon,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
-import { IoSunnySharp, IoMoon } from 'react-icons/io5';
+
 import ColorModeSwitch from '../color-mode-switch';
 
 const Header = () => {
