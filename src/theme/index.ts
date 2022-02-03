@@ -5,6 +5,8 @@ import {
   ChakraTheme,
 } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
+import { MoonIcon } from '../components/icons/moon-icon';
+import { SunIcon } from '../components/icons/sun-icon';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
@@ -20,9 +22,23 @@ const theme = extendTheme({
       },
     }),
   },
+
   fonts: {
     heading: `Roboto Mono, ${base.fonts.heading}`,
     body: `Roboto Mono, ${base.fonts.body}`,
+  },
+
+  semanticTokens: {
+    colors: {
+      'header-bg': {
+        default: 'white',
+        _dark: 'black',
+      },
+      'icon-hover': {
+        default: '#F2F2F2',
+        _dark: '#383A3E',
+      },
+    },
   },
 });
 

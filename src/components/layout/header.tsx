@@ -1,10 +1,4 @@
-import {
-  HStack,
-  Heading,
-  Link,
-  useColorModeValue,
-  Container,
-} from '@chakra-ui/react';
+import { HStack, Heading, Link, Container } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
 import ColorModeSwitch from '../color-mode-switch';
@@ -20,7 +14,7 @@ const Header = () => {
       alignItems="center"
       w="full"
       py={3}
-      bg={useColorModeValue('white', 'black')}
+      bg="header-bg"
       transitionProperty="background"
       transitionDuration="normal"
       mb={16}

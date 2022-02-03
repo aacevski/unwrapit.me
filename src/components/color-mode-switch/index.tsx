@@ -29,7 +29,7 @@ const ColorModeSwitch = (props: Omit<IconButtonProps, 'aria-label'>) => {
       icon={<SwitchIcon />}
       rounded="full"
       _hover={{
-        bg: useColorModeValue('#F2F2F2', '#383A3E'),
+        bg: 'icon-hover',
       }}
       _active={{ bg: 'transparent' }}
       style={{ boxShadow: 'none' }}
