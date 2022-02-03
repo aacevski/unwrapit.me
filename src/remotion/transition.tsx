@@ -31,7 +31,15 @@ export const Transition = ({ children }: Props) => {
         WebkitMaskImage: '-webkit-radial-gradient(white, black)',
       }}
     >
-      <AbsoluteFill>{children}</AbsoluteFill>
+      <AbsoluteFill
+        style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        {children}
+      </AbsoluteFill>
     </AbsoluteFill>
   );
 };
