@@ -1,3 +1,4 @@
+import { VStack } from '@chakra-ui/react';
 import React, { PropsWithChildren } from 'react';
 import {
   AbsoluteFill,
@@ -23,23 +24,33 @@ export const Transition = ({ children }: Props) => {
   const translation = interpolate(spr, [0, 1], [width, 0]);
   const perc = interpolate(spr, [0, 1], [50, 0]);
   return (
-    <AbsoluteFill
-      style={{
-        borderTopLeftRadius: `${perc}% 50%`,
-        borderBottomLeftRadius: `${perc}% 50%`,
-        left: translation,
-        WebkitMaskImage: '-webkit-radial-gradient(white, black)',
-      }}
+    <VStack
+      width="100%"
+      height="100%"
+      justify="center"
+      align="center"
+      rounded="lg"
+      mt={10}
+      bg="linear-gradient(to right, #4e54c8, #8f94fb)"
     >
       <AbsoluteFill
         style={{
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          borderTopLeftRadius: `${perc}% 50%`,
+          borderBottomLeftRadius: `${perc}% 50%`,
+          left: translation,
+          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
         }}
       >
-        {children}
+        <AbsoluteFill
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          {children}
+        </AbsoluteFill>
       </AbsoluteFill>
-    </AbsoluteFill>
+    </VStack>
   );
 };

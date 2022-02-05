@@ -7,10 +7,10 @@ import { Player, PlayerRef } from '@remotion/player';
 import { Avatar, Text, VStack, Container } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
-import TopArtist from '../src/remotion/top-artist';
 import { isAuthenticated } from '../src/utils/is-authenticated';
 import fetcher from '../src/utils/fetcher';
 import { Artists } from '../src/types/artist';
+import Scenes from '../src/remotion/scenes';
 
 type Props = {
   user: User;
@@ -63,7 +63,7 @@ const IndexPage = ({ user }: Props) => {
         >
           <Player
             ref={player}
-            component={TopArtist}
+            component={Scenes}
             durationInFrames={120}
             compositionHeight={1080}
             compositionWidth={1080}
