@@ -40,6 +40,20 @@ const theme = extendTheme({
       },
     },
   },
+
+  components: {
+    Container: {
+      variants: {
+        sidebar: {
+          maxWidth: '240px',
+          height: 'full',
+          position: 'absolute',
+          top: 0,
+          left: 0,
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -51,9 +51,7 @@ const IndexPage = ({ user }: Props) => {
   }, [data]);
 
   return (
-    <VStack align="center" justify="center" w="full" pb={20}>
-      <Avatar size="lg" src={user?.picture || ''} />
-      <Text>hey, {user?.name}!</Text>
+    <VStack align="center" justify="center" w="full" h="full">
       {data && (
         <Container
           display="flex"
