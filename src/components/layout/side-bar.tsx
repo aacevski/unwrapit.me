@@ -50,20 +50,22 @@ const Sidebar = () => {
             </NextLink>
             <Divider />
           </VStack>
-          <VStack w="full" px={3}>
-            {menu.map((menuItem: MenuItem) => (
-              <Button
-                key={menuItem.title}
-                size="sm"
-                variant="ghost"
-                w="full"
-                isActive={pathname === menuItem.path}
-                leftIcon={<Icon as={menuItem.icon} />}
-              >
-                {menuItem.title}
-              </Button>
-            ))}
-          </VStack>
+          {isLoggedIn && (
+            <VStack w="full" px={3}>
+              {menu.map((menuItem: MenuItem) => (
+                <Button
+                  key={menuItem.title}
+                  size="sm"
+                  variant="ghost"
+                  w="full"
+                  isActive={pathname === menuItem.path}
+                  leftIcon={<Icon as={menuItem.icon} />}
+                >
+                  {menuItem.title}
+                </Button>
+              ))}
+            </VStack>
+          )}
         </VStack>
 
         <VStack w="full" spacing={3}>

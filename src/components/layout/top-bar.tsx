@@ -54,7 +54,6 @@ const Topbar = () => {
       />
       <Drawer isOpen={isOpen} placement="left" onClose={onClose} size="sm">
         <DrawerOverlay />
-
         <DrawerContent bg="header-bg" py={4}>
           <VStack spacing={8} w="full" h="full">
             <VStack w="full" px={0} spacing={4}>
@@ -68,20 +67,22 @@ const Topbar = () => {
               </HStack>
               <Divider />
             </VStack>
-            <VStack w="full" px={3}>
-              {menu.map((menuItem: MenuItem) => (
-                <Button
-                  key={menuItem.title}
-                  size="sm"
-                  variant="ghost"
-                  w="full"
-                  isActive={pathname === menuItem.path}
-                  leftIcon={<Icon as={menuItem.icon} />}
-                >
-                  {menuItem.title}
-                </Button>
-              ))}
-            </VStack>
+            {isLoggedIn && (
+              <VStack w="full" px={3}>
+                {menu.map((menuItem: MenuItem) => (
+                  <Button
+                    key={menuItem.title}
+                    size="sm"
+                    variant="ghost"
+                    w="full"
+                    isActive={pathname === menuItem.path}
+                    leftIcon={<Icon as={menuItem.icon} />}
+                  >
+                    {menuItem.title}
+                  </Button>
+                ))}
+              </VStack>
+            )}
           </VStack>
           <VStack w="full" spacing={3}>
             <Divider />
