@@ -20,7 +20,7 @@ import SignOutButton from './sign-out-button';
 
 const Sidebar = () => {
   const { data: isLoggedIn } = useSession();
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
 
   return (
     <HStack
@@ -60,6 +60,7 @@ const Sidebar = () => {
                   w="full"
                   isActive={pathname === menuItem.path}
                   leftIcon={<Icon as={menuItem.icon} />}
+                  onClick={() => push(menuItem.path)}
                 >
                   {menuItem.title}
                 </Button>

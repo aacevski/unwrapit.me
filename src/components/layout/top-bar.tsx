@@ -26,7 +26,7 @@ import SignOutButton from './sign-out-button';
 
 const Topbar = () => {
   const { data: isLoggedIn } = useSession();
-  const { pathname } = useRouter();
+  const { pathname, push } = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -39,8 +39,6 @@ const Topbar = () => {
       w="full"
       py={3}
       bg="header-bg"
-      transitionProperty="background"
-      transitionDuration="normal"
       mb={16}
       px={4}
     >
@@ -77,6 +75,7 @@ const Topbar = () => {
                     w="full"
                     isActive={pathname === menuItem.path}
                     leftIcon={<Icon as={menuItem.icon} />}
+                    onClick={() => push(menuItem.path)}
                   >
                     {menuItem.title}
                   </Button>
