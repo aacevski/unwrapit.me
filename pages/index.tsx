@@ -4,12 +4,13 @@ import useSWR from 'swr';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { Avatar, Text, VStack, Container } from '@chakra-ui/react';
+import { VStack, Container } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
 import fetcher from '../src/utils/fetcher';
 import { Artists } from '../src/types/artist';
+import { Tracks } from '../src/types/track';
 import Scenes from '../src/remotion/scenes';
 
 type Props = {
@@ -19,10 +20,15 @@ type Props = {
 const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
   const [playing, setPlaying] = useState(false);
-  const { data } = useSWR<Artists>(
+  const { data: artists } = useSWR<Artists>(
     '/api/top-artists?time_range=long_term',
     fetcher
   );
+  const { data: tracks } = useSWR<Tracks>(
+    '/api/top-tracks?time_range=long_term',
+    fetcher
+  );
+
   const [handle] = useState(() => delayRender());
 
   useEffect(() => {
@@ -44,15 +50,18 @@ const IndexPage = ({ user }: Props) => {
   }, [user]);
 
   useEffect(() => {
-    if (data) {
+    if (artists) {
+      continueRender(handle);
+    }
+    if (tracks) {
       continueRender(handle);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [data]);
+  }, [artists, tracks]);
 
   return (
     <VStack align="center" justify="center" w="full" h="full" flex={1}>
-      {data && (
+      {artists && tracks && (
         <Container display="flex" maxW="container.sm" centerContent>
           <Player
             ref={player}
@@ -68,7 +77,8 @@ const IndexPage = ({ user }: Props) => {
               flexDirection: 'column',
             }}
             inputProps={{
-              artist: data?.items[0],
+              artist: artists?.items[0],
+              track: tracks?.items[0],
             }}
             controls
           />
