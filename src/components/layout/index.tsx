@@ -15,7 +15,13 @@ const Layout = ({ children }: Props) => {
     >
       <Header />
       <VStack flex={1} spacing={16} alignItems="stretch" w="full">
-        <VStack spacing={16} flex={1} w="full" as="main">
+        <VStack
+          spacing={16}
+          flex={1}
+          w="full"
+          as="main"
+          pl={{ base: 0, lg: '240px' }}
+        >
           {children}
         </VStack>
       </VStack>

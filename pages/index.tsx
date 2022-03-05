@@ -51,14 +51,9 @@ const IndexPage = ({ user }: Props) => {
   }, [data]);
 
   return (
-    <VStack align="center" justify="center" w="full" h="full">
+    <VStack align="center" justify="center" w="full" h="full" flex={1}>
       {data && (
-        <Container
-          display="flex"
-          maxW="container.sm"
-          px={{ base: 4, lg: 0 }}
-          centerContent
-        >
+        <Container display="flex" maxW="container.sm" centerContent>
           <Player
             ref={player}
             component={Scenes}
