@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
-import useSWR from 'swr';
+import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
@@ -20,13 +20,12 @@ type Props = {
 const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
   const [playing, setPlaying] = useState(false);
-  const { data: artists } = useSWR<Artists>(
-    '/api/top-artists?time_range=long_term',
-    fetcher
+
+  const { data: artists } = useQuery<Artists>('get-top-artists', () =>
+    fetcher('/api/top-artists?time_range=long_term')
   );
-  const { data: tracks } = useSWR<Tracks>(
-    '/api/top-tracks?time_range=long_term',
-    fetcher
+  const { data: tracks } = useQuery<Tracks>('get-top-tracks', () =>
+    fetcher('/api/top-artists?time_range=long_term')
   );
 
   const [handle] = useState(() => delayRender());
