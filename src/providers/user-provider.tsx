@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import { createContext, PropsWithChildren, useEffect } from 'react';
 
 import { useSession } from 'next-auth/react';
 import { User } from '../types/user';
