@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { VStack, Container } from '@chakra-ui/react';
+import { VStack, Container, Spinner } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';

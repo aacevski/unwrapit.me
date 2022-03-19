@@ -5,8 +5,6 @@ import {
   ChakraTheme,
 } from '@chakra-ui/react';
 import { mode } from '@chakra-ui/theme-tools';
-import { MoonIcon } from '../components/icons/moon-icon';
-import { SunIcon } from '../components/icons/sun-icon';
 
 const config: ThemeConfig = {
   initialColorMode: 'dark',
