@@ -1,4 +1,4 @@
-import { VStack, Button, Text, Icon } from '@chakra-ui/react';
+import { VStack, Button, Icon } from '@chakra-ui/react';
 import { signIn } from 'next-auth/react';
 import { BsSpotify } from 'react-icons/bs';
 

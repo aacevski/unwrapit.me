@@ -4,7 +4,7 @@ import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { VStack, Container, Spinner } from '@chakra-ui/react';
+import { VStack, Container } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
@@ -19,6 +19,7 @@ type Props = {
 
 const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
+  // eslint-disable-next-line no-unused-vars
   const [playing, setPlaying] = useState(false);
 
   const { data: artists } = useQuery<Artists>('get-top-artists', () =>
