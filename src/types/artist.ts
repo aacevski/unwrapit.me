@@ -5,6 +5,7 @@ export type Artist = {
     }
   ];
   name: string;
+  genres: string[];
 };
 
 export type Artists = {

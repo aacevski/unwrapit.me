@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
@@ -9,9 +9,10 @@ import { VStack, Container } from '@chakra-ui/react';
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
 import fetcher from '../src/utils/fetcher';
-import { Artists } from '../src/types/artist';
-import { Tracks } from '../src/types/track';
+import { Artist, Artists } from '../src/types/artist';
 import Scenes from '../src/remotion/scenes';
+import { Tracks } from '../src/types/track';
+import useTopGenres from '../src/hooks/use-top-genres';
 
 type Props = {
   user: User;
@@ -36,6 +37,7 @@ const IndexPage = ({ user }: Props) => {
     }
   );
 
+  const genres = useTopGenres(artists);
   const [handle] = useState(() => delayRender());
 
   useEffect(() => {
@@ -86,6 +88,7 @@ const IndexPage = ({ user }: Props) => {
             inputProps={{
               artist: artists?.items[0],
               track: tracks?.items[0],
+              genres,
             }}
             controls
           />
