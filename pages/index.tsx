@@ -75,7 +75,7 @@ const IndexPage = ({ user }: Props) => {
           <Player
             ref={player}
             component={Scenes}
-            durationInFrames={240}
+            durationInFrames={360}
             compositionHeight={1080}
             compositionWidth={1080}
             fps={30}

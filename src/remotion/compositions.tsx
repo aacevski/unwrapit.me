@@ -3,6 +3,7 @@ import { Composition } from 'remotion';
 
 import Scenes from './scenes';
 import TopArtist from './top-artist';
+import TopGenres from './top-genres';
 import TopTracks from './top-track';
 
 const Compositions = () => {
@@ -10,7 +11,7 @@ const Compositions = () => {
     <>
       <Composition
         component={Scenes}
-        durationInFrames={240}
+        durationInFrames={360}
         height={1080}
         width={1080}
         fps={30}
@@ -31,6 +32,14 @@ const Compositions = () => {
         width={1080}
         fps={30}
         id="top-track"
+      />
+      <Composition
+        component={TopGenres}
+        durationInFrames={120}
+        height={1080}
+        width={1080}
+        fps={30}
+        id="top-genres"
       />
     </>
   );
