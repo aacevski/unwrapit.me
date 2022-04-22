@@ -8,3 +8,4 @@ export const whileTap = {
   scale: 0.95,
   rotate: 15,
 };
+

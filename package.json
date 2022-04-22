@@ -7,7 +7,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky install",
-    "pre-commit": "next lint"
+    "pre-commit": "next lint --fix && git add -A ."
   },
   "dependencies": {
     "@chakra-ui/react": "^1.8.1",
@@ -17,6 +17,7 @@
     "@remotion/cli": "^2.6.4",
     "@remotion/player": "^2.6.4",
     "@remotion/renderer": "^2.6.4",
+    "eslint-config-airbnb": "^19.0.4",
     "framer-motion": "^5",
     "next": "12.0.8",
     "next-auth": "^4.2.0",

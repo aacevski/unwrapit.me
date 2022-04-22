@@ -22,11 +22,18 @@ const IndexPage = ({ user }: Props) => {
   // eslint-disable-next-line no-unused-vars
   const [playing, setPlaying] = useState(false);
 
-  const { data: artists } = useQuery<Artists>('get-top-artists', () =>
-    fetcher('/api/top-artists?time_range=long_term')
+  const { data: artists } = useQuery<Artists>(
+    'get-top-artists',
+    () => fetcher('/api/top-artists?time_range=long_term'),
+    { refetchOnMount: false, refetchOnWindowFocus: false }
   );
-  const { data: tracks } = useQuery<Tracks>('get-top-tracks', () =>
-    fetcher('/api/top-artists?time_range=long_term')
+  const { data: tracks } = useQuery<Tracks>(
+    'get-top-tracks',
+    () => fetcher('/api/top-tracks?time_range=long_term'),
+    {
+      refetchOnMount: false,
+      refetchOnWindowFocus: false,
+    }
   );
 
   const [handle] = useState(() => delayRender());
@@ -66,7 +73,7 @@ const IndexPage = ({ user }: Props) => {
           <Player
             ref={player}
             component={Scenes}
-            durationInFrames={120}
+            durationInFrames={240}
             compositionHeight={1080}
             compositionWidth={1080}
             fps={30}
@@ -104,3 +111,4 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 };
 
 export default IndexPage;
+

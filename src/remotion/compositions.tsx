@@ -10,7 +10,7 @@ const Compositions = () => {
     <>
       <Composition
         component={Scenes}
-        durationInFrames={120}
+        durationInFrames={240}
         height={1080}
         width={1080}
         fps={30}
@@ -18,7 +18,7 @@ const Compositions = () => {
       />
       <Composition
         component={TopArtist}
-        durationInFrames={130}
+        durationInFrames={120}
         height={1080}
         width={1080}
         fps={30}
@@ -26,7 +26,7 @@ const Compositions = () => {
       />
       <Composition
         component={TopTracks}
-        durationInFrames={260}
+        durationInFrames={120}
         height={1080}
         width={1080}
         fps={30}

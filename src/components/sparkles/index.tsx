@@ -1,4 +1,4 @@
-import { PropsWithChildren, useState } from 'react';
+import React, { PropsWithChildren, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 
 import { comeInOut, spin } from '../../constants/animation';
@@ -12,9 +12,9 @@ import { Sparkle } from '../../types/sparkle';
 type Props = PropsWithChildren<{}>;
 
 const Sparkles = ({ children }: Props) => {
-  const [sparkles, setSparkles] = useState(() => {
-    return range(3).map(() => generateSparkle('#FFC700'));
-  });
+  const [sparkles, setSparkles] = useState(() =>
+    range(3).map(() => generateSparkle('#FFC700'))
+  );
   const prefersReducedMotion = usePrefersReducedMotion();
 
   useRandomInterval(
@@ -65,3 +65,4 @@ const Sparkles = ({ children }: Props) => {
 };
 
 export default Sparkles;
+
