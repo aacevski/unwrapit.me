@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useQuery } from 'react-query';
 import { VStack, Heading, Button } from '@chakra-ui/react';
-import useWindowSize from 'react-use/lib/useWindowSize';
 import Confetti from 'react-confetti';
 
 import fetcher from '../utils/fetcher';
@@ -12,7 +11,6 @@ type Props = {
 
 const EndScreen = ({ trackUris }: Props) => {
   const [isPlaylistGenerated, setIsPlaylistGenerated] = useState(false);
-  const { width, height } = useWindowSize();
 
   const { refetch } = useQuery(
     'create-playlist',
@@ -61,7 +59,7 @@ const EndScreen = ({ trackUris }: Props) => {
           {isPlaylistGenerated ? 'Playlist generated' : 'Generate playlist'}
         </Button>
       </VStack>
-      {isPlaylistGenerated && <Confetti width={width} height={height} />}
+      {isPlaylistGenerated && <Confetti width={2000} height={2000} />}
     </>
   );
 };
