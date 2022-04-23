@@ -1,5 +1,6 @@
 import React from 'react';
 import { Composition } from 'remotion';
+import EndScreen from './end-screen';
 
 import Scenes from './scenes';
 import TopArtist from './top-artist';
@@ -35,11 +36,19 @@ const Compositions = () => {
       />
       <Composition
         component={TopGenres}
-        durationInFrames={120}
+        durationInFrames={280}
         height={1080}
         width={1080}
         fps={30}
         id="top-genres"
+      />
+      <Composition
+        component={EndScreen}
+        durationInFrames={280}
+        height={1080}
+        width={1080}
+        fps={30}
+        id="end-screen"
       />
     </>
   );

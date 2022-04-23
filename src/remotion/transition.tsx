@@ -31,7 +31,6 @@ export const Transition = ({ children }: Props) => {
       align="center"
       rounded="lg"
       mt={10}
-      bg="linear-gradient(to right, #4e54c8, #8f94fb)"
     >
       <AbsoluteFill
         style={{
@@ -54,3 +53,4 @@ export const Transition = ({ children }: Props) => {
     </VStack>
   );
 };
+

@@ -5,7 +5,13 @@ import { Session } from '../../src/types/session';
 import fetcher from '../../src/utils/fetcher';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== 'POST') {
+    res.status(405).send({ message: 'Only POST method is allowed.' });
+    return;
+  }
+
   const session = (await getSession({ req })) as Session;
+  const trackUris = JSON.parse(req.body).trackUris;
 
   const createPlaylist = await fetcher(
     `https://api.spotify.com/v1/users/${session?.user?.sub}/playlists`,
@@ -23,7 +29,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  res.status(200).json(createPlaylist);
+  const updatePlaylist = await fetcher(
+    `https://api.spotify.com/v1/playlists/${createPlaylist.id}/tracks`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${session?.user?.accessToken}`,
+      },
+      body: JSON.stringify({
+        uris: trackUris,
+      }),
+    }
+  );
+
+  res.status(200).json(createPlaylist && updatePlaylist);
 };
 
 export default handler;

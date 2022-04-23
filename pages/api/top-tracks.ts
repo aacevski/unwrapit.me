@@ -5,6 +5,11 @@ import { Session } from '../../src/types/session';
 import fetcher from '../../src/utils/fetcher';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== 'GET') {
+    res.status(405).send({ message: 'Only GET method is allowed.' });
+    return;
+  }
+
   const session = (await getSession({ req })) as Session;
 
   const tracks = await fetcher(

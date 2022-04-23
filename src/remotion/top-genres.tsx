@@ -1,5 +1,6 @@
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { VStack, Heading } from '@chakra-ui/react';
+import GenreItem from '../components/genre-item';
 
 type Props = {
   genres: string[] | undefined;
@@ -28,14 +29,18 @@ const TopGenres = ({ genres }: Props) => {
       spacing={10}
       width="max-content"
       rounded="lg"
+      bg="linear-gradient(to top, #11998e, #38ef7d)"
+      h="full"
+      w="full"
+      justify="center"
     >
-      <Heading transform={`scale(${scale})`}>Your genres are:</Heading>
+      <Heading transform={`scale(${scale})`}>
+        Your favorite genres are...
+      </Heading>
       <VStack w="full">
         {genres &&
-          genres.map((genre) => (
-            <Heading size="2xl" key={genre}>
-              {genre}
-            </Heading>
+          genres.map((genre, index) => (
+            <GenreItem key={genre} genre={genre} index={index} />
           ))}
       </VStack>
     </VStack>

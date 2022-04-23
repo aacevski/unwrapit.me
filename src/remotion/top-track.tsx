@@ -28,10 +28,15 @@ const TopTracks = ({ track }: Props) => {
       py={20}
       px={10}
       spacing={10}
-      width="max-content"
       rounded="lg"
+      bg="linear-gradient(to top, #bc4e9c, #f80759)"
+      h="full"
+      w="full"
+      justify="center"
     >
-      <Heading transform={`scale(${scale})`}>Your top track is...</Heading>
+      <Heading transform={`scale(${scale})`}>
+        The song you keep on repeat is...
+      </Heading>
       {track && (
         <>
           <Image

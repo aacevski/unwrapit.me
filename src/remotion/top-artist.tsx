@@ -28,10 +28,15 @@ const TopArtists = ({ artist }: Props) => {
       py={20}
       px={10}
       spacing={10}
-      width="max-content"
       rounded="lg"
+      bg="linear-gradient(to right, #4e54c8, #8f94fb)"
+      h="full"
+      w="full"
+      justify="center"
     >
-      <Heading transform={`scale(${scale})`}>Your top artist is...</Heading>
+      <Heading size="xl" transform={`scale(${scale})`}>
+        You can't seem to get enough from...
+      </Heading>
       {artist && (
         <>
           <Image

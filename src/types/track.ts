@@ -12,6 +12,7 @@ export type Track = {
     }
   ];
   name: string;
+  uri: string;
 };
 
 export type Tracks = {

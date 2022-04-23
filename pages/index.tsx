@@ -68,6 +68,12 @@ const IndexPage = ({ user }: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [artists, tracks]);
 
+  const useGetTrackUris = () => {
+    return tracks?.items.map((track) => track.uri);
+  };
+
+  const trackUris = useGetTrackUris();
+
   return (
     <VStack align="center" justify="center" w="full" h="full" flex={1}>
       {artists && tracks && (
@@ -75,7 +81,7 @@ const IndexPage = ({ user }: Props) => {
           <Player
             ref={player}
             component={Scenes}
-            durationInFrames={360}
+            durationInFrames={660}
             compositionHeight={1080}
             compositionWidth={1080}
             fps={30}
@@ -89,6 +95,7 @@ const IndexPage = ({ user }: Props) => {
               artist: artists?.items[0],
               track: tracks?.items[0],
               genres,
+              trackUris,
             }}
             controls
           />
