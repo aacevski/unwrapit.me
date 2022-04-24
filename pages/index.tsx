@@ -9,10 +9,11 @@ import { VStack, Container } from '@chakra-ui/react';
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
 import fetcher from '../src/utils/fetcher';
-import { Artist, Artists } from '../src/types/artist';
+import { Artists } from '../src/types/artist';
 import Scenes from '../src/remotion/scenes';
 import { Tracks } from '../src/types/track';
 import useTopGenres from '../src/hooks/use-top-genres';
+import useMediaQuery from '../src/hooks/use-media-query';
 
 type Props = {
   user: User;
@@ -20,7 +21,7 @@ type Props = {
 
 const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
-  // eslint-disable-next-line no-unused-vars
+  const isMobile = useMediaQuery(1020);
   const [playing, setPlaying] = useState(false);
 
   const { data: artists } = useQuery<Artists>(
@@ -82,7 +83,7 @@ const IndexPage = ({ user }: Props) => {
             ref={player}
             component={Scenes}
             durationInFrames={660}
-            compositionHeight={1080}
+            compositionHeight={isMobile ? 1920 : 1080}
             compositionWidth={1080}
             fps={30}
             style={{

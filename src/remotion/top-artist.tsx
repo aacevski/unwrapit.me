@@ -33,8 +33,12 @@ const TopArtists = ({ artist }: Props) => {
       h="full"
       w="full"
       justify="center"
+      textAlign="center"
     >
-      <Heading size="xl" transform={`scale(${scale})`}>
+      <Heading
+        fontSize={{ base: '6xl', lg: '4xl' }}
+        transform={`scale(${scale})`}
+      >
         You can't seem to get enough from...
       </Heading>
       {artist && (
@@ -42,14 +46,15 @@ const TopArtists = ({ artist }: Props) => {
           <Image
             alt={artist?.name}
             src={artist?.images[0]?.url}
-            w={96}
-            h={96}
+            w={{ base: '600px', lg: '300px' }}
             rounded="lg"
             objectFit="cover"
             transform={`scale(${scale})`}
           />
           <Sparkles>
-            <Heading size="2xl">{artist?.name}</Heading>
+            <Heading fontSize={{ base: '8xl', lg: '6xl' }}>
+              {artist?.name}
+            </Heading>
           </Sparkles>
         </>
       )}

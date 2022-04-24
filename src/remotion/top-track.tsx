@@ -33,8 +33,12 @@ const TopTracks = ({ track }: Props) => {
       h="full"
       w="full"
       justify="center"
+      textAlign="center"
     >
-      <Heading transform={`scale(${scale})`}>
+      <Heading
+        fontSize={{ base: '6xl', lg: '4xl' }}
+        transform={`scale(${scale})`}
+      >
         The song you keep on repeat is...
       </Heading>
       {track && (
@@ -42,14 +46,15 @@ const TopTracks = ({ track }: Props) => {
           <Image
             alt={track?.name}
             src={track?.album?.images[0]?.url}
-            w={96}
-            h={96}
+            w={{ base: '600px', lg: '300px' }}
             rounded="lg"
             objectFit="cover"
             transform={`scale(${scale})`}
           />
           <Sparkles>
-            <Heading size="2xl">{track?.name}</Heading>
+            <Heading fontSize={{ base: '8xl', lg: '6xl' }}>
+              {track?.name}
+            </Heading>
           </Sparkles>
         </>
       )}

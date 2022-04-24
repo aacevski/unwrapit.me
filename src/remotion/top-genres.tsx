@@ -34,7 +34,10 @@ const TopGenres = ({ genres }: Props) => {
       w="full"
       justify="center"
     >
-      <Heading transform={`scale(${scale})`}>
+      <Heading
+        fontSize={{ base: '6xl', lg: '4xl' }}
+        transform={`scale(${scale})`}
+      >
         Your favorite genres are...
       </Heading>
       <VStack w="full">

@@ -46,12 +46,15 @@ const EndScreen = ({ trackUris }: Props) => {
         px={10}
         spacing={10}
         rounded="lg"
+        textAlign="center"
       >
-        <Heading>Were you happy with the results?</Heading>
+        <Heading fontSize={{ base: '8xl', lg: '6xl' }}>
+          Were you happy with the results?
+        </Heading>
         <Button
           px={10}
           height={28}
-          fontSize="4xl"
+          fontSize={{ base: '6xl', lg: '4xl' }}
           variant="solid"
           onClick={onClick}
           disabled={isPlaylistGenerated}

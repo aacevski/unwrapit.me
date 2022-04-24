@@ -22,7 +22,7 @@ const GenreItem = ({ index, genre }: Props) => {
 
   return (
     <Heading
-      size="2xl"
+      fontSize={{ base: '8xl', lg: '6xl' }}
       transform={
         isItemVisible ? `translate(${direction}, 0px)` : 'translate(0px, 0px)'
       }
