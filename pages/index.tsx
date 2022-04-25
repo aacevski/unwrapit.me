@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
 import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { VStack, Container } from '@chakra-ui/react';
+import { VStack, Container, Spinner } from '@chakra-ui/react';
 
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
@@ -14,6 +14,8 @@ import Scenes from '../src/remotion/scenes';
 import { Tracks } from '../src/types/track';
 import useTopGenres from '../src/hooks/use-top-genres';
 import useMediaQuery from '../src/hooks/use-media-query';
+import { readFromLocalStorage } from '../src/utils/local-storage';
+import { UserContext } from '../src/providers/user-provider';
 
 type Props = {
   user: User;
@@ -23,15 +25,17 @@ const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
   const isMobile = useMediaQuery(1020);
   const [playing, setPlaying] = useState(false);
+  const userContext = useContext(UserContext);
+  const { timePeriod } = userContext;
 
   const { data: artists } = useQuery<Artists>(
-    'get-top-artists',
-    () => fetcher('/api/top-artists?time_range=long_term'),
+    `get-top-artists-${timePeriod}`,
+    () => fetcher(`/api/top-artists?time_range=${timePeriod}`),
     { refetchOnMount: false, refetchOnWindowFocus: false }
   );
   const { data: tracks } = useQuery<Tracks>(
-    'get-top-tracks',
-    () => fetcher('/api/top-tracks?time_range=long_term'),
+    `get-top-tracks-${timePeriod}`,
+    () => fetcher(`/api/top-tracks?time_range=${timePeriod}`),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
@@ -77,7 +81,7 @@ const IndexPage = ({ user }: Props) => {
 
   return (
     <VStack align="center" justify="center" w="full" h="full" flex={1}>
-      {artists && tracks && (
+      {artists && tracks ? (
         <Container display="flex" maxW="container.sm" centerContent>
           <Player
             ref={player}
@@ -103,6 +107,8 @@ const IndexPage = ({ user }: Props) => {
             controls
           />
         </Container>
+      ) : (
+        <Spinner size="xl" />
       )}
     </VStack>
   );

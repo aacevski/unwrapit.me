@@ -1,25 +1,44 @@
-import { PropsWithChildren } from 'react';
-import { VStack, Container } from '@chakra-ui/react';
+import { PropsWithChildren, useContext } from 'react';
+import {
+  VStack,
+  Container,
+  IconButton,
+  Icon,
+  useDisclosure,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+  Select,
+  Heading,
+  Text,
+} from '@chakra-ui/react';
+import { ImCog } from 'react-icons/im';
+
 import Header from './header';
+import useMediaQuery from '../../hooks/use-media-query';
+import { writeToLocalStorage } from '../../utils/local-storage';
+import { UserContext } from '../../providers/user-provider';
 
 type Props = PropsWithChildren<{}>;
 
 const Layout = ({ children }: Props) => {
+  const isMobile = useMediaQuery(1020);
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const userContext = useContext(UserContext);
+  const { setTimePeriod } = userContext;
+
   return (
     <Container
       display="flex"
       maxW="full"
-      minH={{ base: 'auto', md: '100vh' }}
+      minH="100vh"
       px={0}
       centerContent
-      bgColor="hsla(0,100%,50%,1)"
-      bgImage="radial-gradient(at 40% 20%, hsla(28,100%,74%,1) 0px, transparent 50%),
-     radial-gradient(at 80% 0%, hsla(189,100%,56%,1) 0px, transparent 50%),
-     radial-gradient(at 0% 50%, hsla(355,100%,93%,1) 0px, transparent 50%),
-     radial-gradient(at 80% 50%, hsla(340,100%,76%,1) 0px, transparent 50%),
-     radial-gradient(at 0% 100%, hsla(22,100%,77%,1) 0px, transparent 50%),
-     radial-gradient(at 80% 100%, hsla(242,100%,70%,1) 0px, transparent 50%),
-     radial-gradient(at 0% 0%, hsla(343,100%,76%,1) 0px, transparent 50%)"
+      position="relative"
     >
       <Header />
       <VStack flex={1} spacing={16} alignItems="stretch" w="full">
@@ -34,6 +53,51 @@ const Layout = ({ children }: Props) => {
           {children}
         </VStack>
       </VStack>
+      {!isMobile && (
+        <>
+          <Popover placement="top-end">
+            <PopoverTrigger>
+              <IconButton
+                pos="absolute"
+                bottom={6}
+                right={6}
+                aria-label="Settings"
+                bgColor="rgba(0, 0, 0, 0.9)"
+                transition="all 0.2s"
+                _hover={{
+                  bgColor: 'rgba(0, 0, 0, 1)',
+                  transform: 'scale(1.1)',
+                }}
+                icon={<Icon as={ImCog} />}
+                onClick={onOpen}
+              />
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent bg="rgba(0, 0, 0, 0.9)" backdropBlur="24px">
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody p={4}>
+                  <Heading mb={4} size="md">
+                    settings
+                  </Heading>
+                  <Text fontSize="sm" mb={2}>
+                    time period:
+                  </Text>
+                  <Select
+                    size="sm"
+                    defaultValue="long_term"
+                    onChange={(e) => setTimePeriod(e.target.value)}
+                  >
+                    <option value="short_term">Short Term</option>
+                    <option value="medium_term">Medium Term</option>
+                    <option value="long_term">Long Term</option>
+                  </Select>
+                </PopoverBody>
+              </PopoverContent>
+            </Portal>
+          </Popover>
+        </>
+      )}
     </Container>
   );
 };
