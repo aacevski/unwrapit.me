@@ -41,7 +41,6 @@ const EndScreen = ({ trackUris }: Props) => {
         h="full"
         align="center"
         justify="center"
-        bg="linear-gradient(to right, #0f0c29, #302b63, #24243e)"
         py={20}
         px={10}
         spacing={10}

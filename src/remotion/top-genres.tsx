@@ -29,7 +29,6 @@ const TopGenres = ({ genres }: Props) => {
       spacing={10}
       width="max-content"
       rounded="lg"
-      bg="linear-gradient(to top, #11998e, #38ef7d)"
       h="full"
       w="full"
       justify="center"

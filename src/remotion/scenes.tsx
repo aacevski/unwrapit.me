@@ -23,17 +23,17 @@ const Scenes = ({ artist, track, genres, trackUris }: Props) => {
           <TopArtists artist={artist} />
         </Transition>
       </Series.Sequence>
-      <Series.Sequence durationInFrames={120} offset={-25}>
+      <Series.Sequence durationInFrames={120} offset={0}>
         <Transition>
           <TopTracks track={track} />
         </Transition>
       </Series.Sequence>
-      <Series.Sequence durationInFrames={280} offset={-25}>
+      <Series.Sequence durationInFrames={280} offset={0}>
         <Transition>
           <TopGenres genres={genres} />
         </Transition>
       </Series.Sequence>
-      <Series.Sequence durationInFrames={280} offset={-25}>
+      <Series.Sequence durationInFrames={280} offset={0}>
         <Transition>
           <EndScreen trackUris={trackUris} />
         </Transition>

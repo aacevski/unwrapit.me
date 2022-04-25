@@ -29,7 +29,6 @@ const TopArtists = ({ artist }: Props) => {
       px={10}
       spacing={10}
       rounded="lg"
-      bg="linear-gradient(to right, #4e54c8, #8f94fb)"
       h="full"
       w="full"
       justify="center"

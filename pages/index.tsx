@@ -91,6 +91,8 @@ const IndexPage = ({ user }: Props) => {
               width: '100%',
               display: 'flex',
               flexDirection: 'column',
+              borderRadius: '3px',
+              backgroundColor: 'rgba(0, 0, 0, 0.9)',
             }}
             inputProps={{
               artist: artists?.items[0],

@@ -38,9 +38,10 @@ const Topbar = () => {
       alignItems="center"
       w="full"
       py={3}
-      bg="header-bg"
       mb={16}
       px={4}
+      bgColor="rgba(0, 0, 0, 0.9)"
+      backdropBlur="24px"
     >
       <IconButton
         variant="ghost"

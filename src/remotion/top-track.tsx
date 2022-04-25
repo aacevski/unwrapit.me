@@ -29,7 +29,7 @@ const TopTracks = ({ track }: Props) => {
       px={10}
       spacing={10}
       rounded="lg"
-      bg="linear-gradient(to top, #bc4e9c, #f80759)"
+      bgColor="rgba(0, 0, 0, 0.0)"
       h="full"
       w="full"
       justify="center"

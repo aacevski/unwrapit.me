@@ -31,7 +31,8 @@ const Sidebar = () => {
       w="full"
     >
       <Container
-        bg="header-bg"
+        bgColor="rgba(0, 0, 0, 0.9)"
+        backdropBlur="24px"
         display="flex"
         variant="sidebar"
         alignItems="center"
