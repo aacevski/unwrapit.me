@@ -23,6 +23,7 @@ type Props = {
 
 const IndexPage = ({ user }: Props) => {
   const player = useRef<PlayerRef>(null);
+  const [ready, setReady] = useState(false);
   const isMobile = useMediaQuery(1020);
   const [playing, setPlaying] = useState(false);
   const userContext = useContext(UserContext);
@@ -46,7 +47,11 @@ const IndexPage = ({ user }: Props) => {
   const [handle] = useState(() => delayRender());
 
   useEffect(() => {
-    if (!user || !player.current) {
+    setReady(true);
+  }, []);
+
+  useEffect(() => {
+    if (!player.current) {
       return;
     }
 
@@ -61,7 +66,7 @@ const IndexPage = ({ user }: Props) => {
     player.current.addEventListener('play', () => {
       setPlaying(true);
     });
-  }, [user]);
+  }, [ready]);
 
   useEffect(() => {
     if (artists && tracks) {
