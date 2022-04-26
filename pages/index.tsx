@@ -64,10 +64,7 @@ const IndexPage = ({ user }: Props) => {
   }, [user]);
 
   useEffect(() => {
-    if (artists) {
-      continueRender(handle);
-    }
-    if (tracks) {
+    if (artists && tracks) {
       continueRender(handle);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

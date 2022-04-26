@@ -8,21 +8,21 @@ const menu = [
     path: '/',
     icon: AiFillHome,
   },
-  {
-    title: 'Profile',
-    path: '/profile',
-    icon: FaUserAlt,
-  },
-  {
-    title: 'Top Artists',
-    path: '/top-artists',
-    icon: AiFillStar,
-  },
-  {
-    title: 'Top Tracks',
-    path: '/top-tracks',
-    icon: BsMusicNoteBeamed,
-  },
+  // {
+  //   title: 'Profile',
+  //   path: '/profile',
+  //   icon: FaUserAlt,
+  // },
+  // {
+  //   title: 'Top Artists',
+  //   path: '/top-artists',
+  //   icon: AiFillStar,
+  // },
+  // {
+  //   title: 'Top Tracks',
+  //   path: '/top-tracks',
+  //   icon: BsMusicNoteBeamed,
+  // },
 ];
 
 export default menu;
