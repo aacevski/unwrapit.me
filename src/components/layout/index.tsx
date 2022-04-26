@@ -20,16 +20,15 @@ import { ImCog } from 'react-icons/im';
 
 import Header from './header';
 import useMediaQuery from '../../hooks/use-media-query';
-import { writeToLocalStorage } from '../../utils/local-storage';
 import { UserContext } from '../../providers/user-provider';
 
 type Props = PropsWithChildren<{}>;
 
 const Layout = ({ children }: Props) => {
   const isMobile = useMediaQuery(1020);
-  const { isOpen, onOpen, onClose } = useDisclosure();
+  const { onOpen } = useDisclosure();
   const userContext = useContext(UserContext);
-  const { setTimePeriod } = userContext;
+  const { setTimePeriod, user } = userContext;
 
   return (
     <Container
@@ -53,7 +52,7 @@ const Layout = ({ children }: Props) => {
           {children}
         </VStack>
       </VStack>
-      {!isMobile && (
+      {!isMobile && user && (
         <>
           <Popover placement="top-end">
             <PopoverTrigger>

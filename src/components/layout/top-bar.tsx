@@ -38,7 +38,7 @@ import SignOutButton from './sign-out-button';
 
 const Topbar = () => {
   const userContext = useContext(UserContext);
-  const { setTimePeriod } = userContext;
+  const { setTimePeriod, user } = userContext;
   const { data: isLoggedIn } = useSession();
   const { pathname, push } = useRouter();
   const {
@@ -118,41 +118,43 @@ const Topbar = () => {
           </VStack>
         </DrawerContent>
       </Drawer>
-      <Popover placement="top-end">
-        <PopoverTrigger>
-          <IconButton
-            variant="ghost"
-            aria-label="Settings"
-            icon={<Icon as={ImCog} />}
-            color="white"
-            onClick={onSettingsOpen}
-            size="sm"
-          />
-        </PopoverTrigger>
-        <Portal>
-          <PopoverContent bg="rgba(0, 0, 0, 1)" backdropBlur="24px">
-            <PopoverArrow />
-            <PopoverCloseButton />
-            <PopoverBody p={4}>
-              <Heading mb={4} size="md">
-                settings
-              </Heading>
-              <Text fontSize="sm" mb={2}>
-                time period:
-              </Text>
-              <Select
-                size="sm"
-                defaultValue="long_term"
-                onChange={(e) => setTimePeriod(e.target.value)}
-              >
-                <option value="short_term">Short Term</option>
-                <option value="medium_term">Medium Term</option>
-                <option value="long_term">Long Term</option>
-              </Select>
-            </PopoverBody>
-          </PopoverContent>
-        </Portal>
-      </Popover>
+      {user && (
+        <Popover placement="top-end">
+          <PopoverTrigger>
+            <IconButton
+              variant="ghost"
+              aria-label="Settings"
+              icon={<Icon as={ImCog} />}
+              color="white"
+              onClick={onSettingsOpen}
+              size="sm"
+            />
+          </PopoverTrigger>
+          <Portal>
+            <PopoverContent bg="rgba(0, 0, 0, 1)" backdropBlur="24px">
+              <PopoverArrow />
+              <PopoverCloseButton />
+              <PopoverBody p={4}>
+                <Heading mb={4} size="md">
+                  settings
+                </Heading>
+                <Text fontSize="sm" mb={2}>
+                  time period:
+                </Text>
+                <Select
+                  size="sm"
+                  defaultValue="long_term"
+                  onChange={(e) => setTimePeriod(e.target.value)}
+                >
+                  <option value="short_term">Short Term</option>
+                  <option value="medium_term">Medium Term</option>
+                  <option value="long_term">Long Term</option>
+                </Select>
+              </PopoverBody>
+            </PopoverContent>
+          </Portal>
+        </Popover>
+      )}
     </HStack>
   );
 };
