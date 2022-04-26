@@ -1,5 +1,4 @@
 import NextAuth from 'next-auth';
-import { JWT, JWTOptions } from 'next-auth/jwt';
 import SpotifyProvider from 'next-auth/providers/spotify';
 import refreshToken from '../../../src/utils/refresh-token';
 
