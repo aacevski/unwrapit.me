@@ -32,6 +32,7 @@ const TopGenres = ({ genres }: Props) => {
       h="full"
       w="full"
       justify="center"
+      textAlign="center"
     >
       <Heading
         fontSize={{ base: '6xl', lg: '4xl' }}
