@@ -1,10 +1,11 @@
-import { useCallback, useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
-import { continueRender, delayRender } from 'remotion';
+import { AbsoluteFill, continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { VStack, Container, Spinner } from '@chakra-ui/react';
+import { VStack, Container, Spinner, Icon, Box } from '@chakra-ui/react';
+import { FaPlay } from 'react-icons/fa';
 
 import { User } from '../src/types/user';
 import { isAuthenticated } from '../src/utils/is-authenticated';
@@ -14,7 +15,6 @@ import Scenes from '../src/remotion/scenes';
 import { Tracks } from '../src/types/track';
 import useTopGenres from '../src/hooks/use-top-genres';
 import useMediaQuery from '../src/hooks/use-media-query';
-import { readFromLocalStorage } from '../src/utils/local-storage';
 import { UserContext } from '../src/providers/user-provider';
 
 type Props = {
@@ -77,9 +77,16 @@ const IndexPage = ({ user }: Props) => {
   const trackUris = useGetTrackUris();
 
   return (
-    <VStack align="center" justify="center" w="full" h="full" flex={1}>
+    <VStack
+      align="center"
+      justify="center"
+      w="full"
+      h="full"
+      flex={1}
+      pos="relative"
+    >
       {artists && tracks ? (
-        <Container display="flex" maxW="container.sm" centerContent>
+        <Container display="flex" maxW="container.sm">
           <Player
             ref={player}
             component={Scenes}
@@ -101,8 +108,21 @@ const IndexPage = ({ user }: Props) => {
               genres,
               trackUris,
             }}
-            controls
           />
+          <AbsoluteFill
+            style={{
+              justifyContent: 'center',
+              alignItems: 'center',
+              flexDirection: 'column',
+              display: 'flex',
+              cursor: 'pointer',
+            }}
+            onClick={(e) => {
+              player?.current?.toggle(e);
+            }}
+          >
+            {!playing && <Icon fontSize="5xl" as={FaPlay} />}
+          </AbsoluteFill>
         </Container>
       ) : (
         <Spinner size="xl" />
