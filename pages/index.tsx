@@ -113,21 +113,8 @@ const IndexPage = ({ user }: Props) => {
               genres,
               trackUris,
             }}
+            controls
           />
-          <AbsoluteFill
-            style={{
-              justifyContent: 'center',
-              alignItems: 'center',
-              flexDirection: 'column',
-              display: 'flex',
-              cursor: 'pointer',
-            }}
-            onClick={(e) => {
-              player?.current?.toggle(e);
-            }}
-          >
-            {!playing && <Icon fontSize="5xl" as={FaPlay} />}
-          </AbsoluteFill>
         </Container>
       ) : (
         <Spinner size="xl" />
