@@ -52,51 +52,6 @@ const Layout = ({ children }: Props) => {
           {children}
         </VStack>
       </VStack>
-      {!isMobile && user && (
-        <>
-          <Popover placement="top-end">
-            <PopoverTrigger>
-              <IconButton
-                pos="absolute"
-                bottom={6}
-                right={6}
-                aria-label="Settings"
-                bgColor="rgba(0, 0, 0, 0.9)"
-                transition="all 0.2s"
-                _hover={{
-                  bgColor: 'rgba(0, 0, 0, 1)',
-                  transform: 'scale(1.1)',
-                }}
-                icon={<Icon as={ImCog} />}
-                onClick={onOpen}
-              />
-            </PopoverTrigger>
-            <Portal>
-              <PopoverContent bg="rgba(0, 0, 0, 0.9)" backdropBlur="24px">
-                <PopoverArrow />
-                <PopoverCloseButton />
-                <PopoverBody p={4}>
-                  <Heading mb={4} size="md">
-                    settings
-                  </Heading>
-                  <Text fontSize="sm" mb={2}>
-                    time period:
-                  </Text>
-                  <Select
-                    size="sm"
-                    defaultValue="long_term"
-                    onChange={(e) => setTimePeriod(e.target.value)}
-                  >
-                    <option value="short_term">Short Term</option>
-                    <option value="medium_term">Medium Term</option>
-                    <option value="long_term">Long Term</option>
-                  </Select>
-                </PopoverBody>
-              </PopoverContent>
-            </Portal>
-          </Popover>
-        </>
-      )}
     </Container>
   );
 };

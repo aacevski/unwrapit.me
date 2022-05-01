@@ -13,7 +13,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = (await getSession({ req })) as Session;
 
   const artists = await fetcher(
-    `https://api.spotify.com/v1/me/top/artists?time_range=${req.query.time_range}`,
+    `https://api.spotify.com/v1/me/top/artists?time_range=${req.query.time_range}&limit=50`,
     {
       headers: {
         Authorization: `Bearer ${session?.user?.accessToken}`,

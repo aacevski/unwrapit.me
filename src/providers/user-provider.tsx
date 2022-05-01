@@ -1,5 +1,11 @@
 import { useRouter } from 'next/router';
-import { createContext, PropsWithChildren, useEffect, useState } from 'react';
+import {
+  createContext,
+  PropsWithChildren,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 import { useSession } from 'next-auth/react';
 import { User } from '../types/user';
@@ -57,6 +63,16 @@ const UserProvider = ({ children }: Props) => {
       {children}
     </UserContext.Provider>
   );
+};
+
+export const useUser = () => {
+  const context = useContext(UserContext);
+
+  if (context === undefined) {
+    throw new Error('useUser must be used within a UserProvider');
+  }
+
+  return context;
 };
 
 export default UserProvider;

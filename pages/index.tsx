@@ -1,33 +1,45 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { GetServerSideProps } from 'next';
 import { useQuery } from 'react-query';
 import { getSession } from 'next-auth/react';
-import { AbsoluteFill, continueRender, delayRender } from 'remotion';
+import { continueRender, delayRender } from 'remotion';
 import { Player, PlayerRef } from '@remotion/player';
-import { VStack, Container, Spinner, Icon, Box } from '@chakra-ui/react';
-import { FaPlay } from 'react-icons/fa';
+import {
+  VStack,
+  Container,
+  Spinner,
+  Icon,
+  Heading,
+  IconButton,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverContent,
+  PopoverTrigger,
+  Portal,
+  Select,
+  useDisclosure,
+  Text,
+} from '@chakra-ui/react';
 
-import { User } from '../src/types/user';
-import { isAuthenticated } from '../src/utils/is-authenticated';
 import fetcher from '../src/utils/fetcher';
 import { Artists } from '../src/types/artist';
 import Scenes from '../src/remotion/scenes';
 import { Tracks } from '../src/types/track';
 import useTopGenres from '../src/hooks/use-top-genres';
 import useMediaQuery from '../src/hooks/use-media-query';
-import { UserContext } from '../src/providers/user-provider';
+import { useUser } from '../src/providers/user-provider';
+import { ImCog } from 'react-icons/im';
+import { isAuthenticated } from '../src/utils/is-authenticated';
 
-type Props = {
-  user: User;
-};
-
-const IndexPage = ({ user }: Props) => {
+const IndexPage = () => {
   const player = useRef<PlayerRef>(null);
+  const { onOpen } = useDisclosure();
   const [ready, setReady] = useState(false);
   const isMobile = useMediaQuery(1020);
   const [playing, setPlaying] = useState(false);
-  const userContext = useContext(UserContext);
-  const { timePeriod } = userContext;
+  const { timePeriod, setTimePeriod } = useUser();
 
   const { data: artists } = useQuery<Artists>(
     `get-top-artists-${timePeriod}`,
@@ -118,6 +130,51 @@ const IndexPage = ({ user }: Props) => {
         </Container>
       ) : (
         <Spinner size="xl" />
+      )}
+      {!isMobile && (
+        <>
+          <Popover placement="top-end">
+            <PopoverTrigger>
+              <IconButton
+                pos="absolute"
+                bottom={6}
+                right={6}
+                aria-label="Settings"
+                bgColor="rgba(0, 0, 0, 0.9)"
+                transition="all 0.2s"
+                _hover={{
+                  bgColor: 'rgba(0, 0, 0, 1)',
+                  transform: 'scale(1.1)',
+                }}
+                icon={<Icon as={ImCog} />}
+                onClick={onOpen}
+              />
+            </PopoverTrigger>
+            <Portal>
+              <PopoverContent bg="rgba(0, 0, 0, 0.9)" backdropBlur="24px">
+                <PopoverArrow />
+                <PopoverCloseButton />
+                <PopoverBody p={4}>
+                  <Heading mb={4} size="md">
+                    settings
+                  </Heading>
+                  <Text fontSize="sm" mb={2}>
+                    time period:
+                  </Text>
+                  <Select
+                    size="sm"
+                    defaultValue="long_term"
+                    onChange={(e) => setTimePeriod(e.target.value)}
+                  >
+                    <option value="short_term">Short Term</option>
+                    <option value="medium_term">Medium Term</option>
+                    <option value="long_term">Long Term</option>
+                  </Select>
+                </PopoverBody>
+              </PopoverContent>
+            </Portal>
+          </Popover>
+        </>
       )}
     </VStack>
   );

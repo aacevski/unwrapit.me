@@ -24,11 +24,12 @@ const Sidebar = () => {
 
   return (
     <HStack
+      position="fixed"
       as="nav"
-      zIndex="popover"
       justifyContent="space-between"
       alignItems="center"
       w="full"
+      h="full"
     >
       <Container
         bgColor="rgba(0, 0, 0, 0.9)"

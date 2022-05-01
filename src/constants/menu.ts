@@ -13,11 +13,11 @@ const menu = [
   //   path: '/profile',
   //   icon: FaUserAlt,
   // },
-  // {
-  //   title: 'Top Artists',
-  //   path: '/top-artists',
-  //   icon: AiFillStar,
-  // },
+  {
+    title: 'Top Artists',
+    path: '/top-artists',
+    icon: AiFillStar,
+  },
   // {
   //   title: 'Top Tracks',
   //   path: '/top-tracks',

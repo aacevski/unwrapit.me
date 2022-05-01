@@ -52,6 +52,7 @@ const Topbar = () => {
   return (
     <HStack
       as="nav"
+      position="fixed"
       top={0}
       insetX={0}
       justifyContent="space-between"
@@ -62,6 +63,7 @@ const Topbar = () => {
       px={4}
       bgColor="rgba(0, 0, 0, 0.9)"
       backdropBlur="24px"
+      zIndex={100}
     >
       <IconButton
         variant="ghost"
@@ -102,7 +104,10 @@ const Topbar = () => {
                     w="full"
                     isActive={pathname === menuItem.path}
                     leftIcon={<Icon as={menuItem.icon} />}
-                    onClick={() => push(menuItem.path)}
+                    onClick={() => {
+                      onNavigationClose();
+                      push(menuItem.path);
+                    }}
                   >
                     {menuItem.title}
                   </Button>

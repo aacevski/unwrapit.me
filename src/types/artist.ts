@@ -6,6 +6,9 @@ export type Artist = {
   ];
   name: string;
   genres: string[];
+  external_urls: {
+    spotify: string;
+  };
 };
 
 export type Artists = {
