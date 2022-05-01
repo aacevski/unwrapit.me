@@ -25,7 +25,7 @@ import { UserContext } from '../../providers/user-provider';
 type Props = PropsWithChildren<{}>;
 
 const Layout = ({ children }: Props) => {
-  const isMobile = useMediaQuery(1020);
+  const isMobile = useMediaQuery(992);
   const { onOpen } = useDisclosure();
   const userContext = useContext(UserContext);
   const { setTimePeriod, user } = userContext;

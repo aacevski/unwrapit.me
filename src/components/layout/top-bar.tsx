@@ -38,7 +38,7 @@ import SignOutButton from './sign-out-button';
 
 const Topbar = () => {
   const userContext = useContext(UserContext);
-  const { setTimePeriod, user } = userContext;
+  const { timePeriod, setTimePeriod, user } = userContext;
   const { data: isLoggedIn } = useSession();
   const { pathname, push } = useRouter();
   const {
@@ -148,7 +148,7 @@ const Topbar = () => {
                 </Text>
                 <Select
                   size="sm"
-                  defaultValue="long_term"
+                  defaultValue={timePeriod}
                   onChange={(e) => setTimePeriod(e.target.value)}
                 >
                   <option value="short_term">Short Term</option>

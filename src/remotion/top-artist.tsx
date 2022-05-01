@@ -1,5 +1,6 @@
+/* eslint-disable react/no-unescaped-entities */
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
-import { VStack, Image, Heading, Text } from '@chakra-ui/react';
+import { VStack, Image, Heading } from '@chakra-ui/react';
 import { Artist } from '../types/artist';
 import Sparkles from '../components/sparkles';
 

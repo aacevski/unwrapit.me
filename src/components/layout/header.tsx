@@ -3,9 +3,10 @@ import Sidebar from './side-bar';
 import Topbar from './top-bar';
 
 const Header = () => {
-  const isMobile = useMediaQuery(1020);
+  const isMobile = useMediaQuery(992);
 
   return isMobile ? <Topbar /> : <Sidebar />;
 };
 
 export default Header;
+

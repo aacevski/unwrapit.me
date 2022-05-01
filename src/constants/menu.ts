@@ -18,11 +18,11 @@ const menu = [
     path: '/top-artists',
     icon: AiFillStar,
   },
-  // {
-  //   title: 'Top Tracks',
-  //   path: '/top-tracks',
-  //   icon: BsMusicNoteBeamed,
-  // },
+  {
+    title: 'Top Tracks',
+    path: '/top-tracks',
+    icon: BsMusicNoteBeamed,
+  },
 ];
 
 export default menu;

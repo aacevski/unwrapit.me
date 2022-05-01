@@ -18,22 +18,29 @@ import SettingsPopover from '../src/components/settings-popover';
 import Spinner from '../src/components/spinner';
 import useMediaQuery from '../src/hooks/use-media-query';
 import { useUser } from '../src/providers/user-provider';
-import { Artist, Artists } from '../src/types/artist';
+import { Track, Tracks } from '../src/types/track';
 import fetcher from '../src/utils/fetcher';
 
-const TopArtists = () => {
+const TopTracks = () => {
+  const [tracks, setTracks] = useState<Tracks>();
   const { timePeriod } = useUser();
-  const isMobile = useMediaQuery(992);
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
+  const isMobile = useMediaQuery(992);
 
-  const { data: artists, isLoading } = useQuery<Artists>(
-    [`get-top-artists`, timePeriod],
-    () => fetcher(`/api/top-artists?time_range=${timePeriod}`),
+  const { data, isLoading } = useQuery<Tracks>(
+    [`get-top-tracks`, timePeriod],
+    () => fetcher(`/api/top-tracks?time_range=${timePeriod}`),
     {
       refetchOnMount: false,
       refetchOnWindowFocus: false,
     }
   );
+
+  useEffect(() => {
+    if (data) {
+      setTracks(data);
+    }
+  }, [data, timePeriod]);
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -50,19 +57,19 @@ const TopArtists = () => {
   }
 
   return (
-    <VStack pt={32}>
+    <VStack pt={32} position="relative">
       {scrollToTheTopVisible && <ScrollToTheTopButton />}
       {!isMobile && <SettingsPopover />}
       <Grid
         templateColumns={{
           base: 'repeat(1, 1fr)',
           md: 'repeat(2, 1fr)',
-          lg: 'repeat(3, 1fr)',
+          '2xl': 'repeat(3, 1fr)',
         }}
         gap={20}
       >
-        {artists?.items.map((artist: Artist) => (
-          <GridItem key={artist.name} flex={1}>
+        {tracks?.items.map((track: Track) => (
+          <GridItem key={`${track.name}-${track.album.name}`} flex={1}>
             <LinkBox h="full">
               <Box
                 role="group"
@@ -90,7 +97,7 @@ const TopArtists = () => {
                     pos: 'absolute',
                     top: 5,
                     left: 0,
-                    backgroundImage: `url(${artist?.images[0]?.url})`,
+                    backgroundImage: `url(${track.album.images[0].url})`,
                     filter: 'blur(15px)',
                     zIndex: -1,
                   }}
@@ -104,13 +111,13 @@ const TopArtists = () => {
                     rounded="lg"
                     h={80}
                     objectFit="cover"
-                    src={artist?.images[0].url}
-                    alt={artist?.name}
+                    src={track.album.images[0].url}
+                    alt={track?.name}
                   />
                 </Box>
                 <Stack pt={10} align="center">
                   <LinkOverlay
-                    href={artist.external_urls.spotify}
+                    href={track.external_urls.spotify}
                     target="_blank"
                   >
                     <Text
@@ -118,11 +125,11 @@ const TopArtists = () => {
                       fontSize="sm"
                       textTransform="uppercase"
                     >
-                      {artist?.genres[0]}
+                      {track?.album.name}
                     </Text>
                   </LinkOverlay>
                   <Heading fontSize="2xl" fontWeight={500}>
-                    {artist.name}
+                    {track.name}
                   </Heading>
                 </Stack>
               </Box>
@@ -134,4 +141,4 @@ const TopArtists = () => {
   );
 };
 
-export default TopArtists;
+export default TopTracks;

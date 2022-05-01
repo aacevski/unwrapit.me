@@ -1,6 +1,6 @@
 import { Artist, Artists } from '../types/artist';
 
-const useTopGenres = (artists: Artists | undefined) => {
+const getTopGenres = (artists: Artists | undefined) => {
   if (!artists) return;
 
   const genres = artists.items.map((artist: Artist) => artist.genres).flat();
@@ -21,4 +21,4 @@ const useTopGenres = (artists: Artists | undefined) => {
   return topGenres;
 };
 
-export default useTopGenres;
+export default getTopGenres;
