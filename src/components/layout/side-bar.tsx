@@ -47,7 +47,7 @@ const Sidebar = () => {
           <VStack w="full" px={0} spacing={4}>
             <NextLink href="/" passHref>
               <Link>
-                <Heading size="sm">unwrapped.me</Heading>
+                <Heading size="sm">unwrapit.me</Heading>
               </Link>
             </NextLink>
             <Divider />

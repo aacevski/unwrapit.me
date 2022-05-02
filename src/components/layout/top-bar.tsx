@@ -87,7 +87,7 @@ const Topbar = () => {
               <HStack>
                 <NextLink href="/" passHref>
                   <Link>
-                    <Heading size="sm">unwrapped.me</Heading>
+                    <Heading size="sm">unwrapit.me</Heading>
                   </Link>
                 </NextLink>
                 <DrawerCloseButton />

@@ -22,7 +22,7 @@ const Login = () => {
             href="https://github.com/aacevski/unwrapit.me"
             target="_blank"
           >
-            <strong>unwrapped.me</strong>
+            <strong>unwrapit.me</strong>
           </Link>{' '}
           is an open source project
         </Heading>
