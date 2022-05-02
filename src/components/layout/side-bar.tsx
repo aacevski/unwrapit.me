@@ -23,62 +23,57 @@ const Sidebar = () => {
   const { pathname, push } = useRouter();
 
   return (
-    <HStack
-      position="fixed"
+    <Container
+      pos="fixed"
       as="nav"
-      justifyContent="space-between"
+      left={0}
+      top={0}
+      bgColor="rgba(0, 0, 0, 0.9)"
+      backdropBlur="24px"
+      display="flex"
+      variant="sidebar"
       alignItems="center"
-      w="full"
-      h="full"
+      justifyContent="space-between"
+      height="full"
+      py={4}
+      px={0}
+      flexDirection="column"
     >
-      <Container
-        bgColor="rgba(0, 0, 0, 0.9)"
-        backdropBlur="24px"
-        display="flex"
-        variant="sidebar"
-        alignItems="center"
-        justifyContent="space-between"
-        height="full"
-        py={4}
-        px={0}
-        flexDirection="column"
-      >
-        <VStack spacing={8} w="full">
-          <VStack w="full" px={0} spacing={4}>
-            <NextLink href="/" passHref>
-              <Link>
-                <Heading size="sm">unwrapit.me</Heading>
-              </Link>
-            </NextLink>
-            <Divider />
-          </VStack>
-          {isLoggedIn && (
-            <VStack w="full" px={3}>
-              {menu.map((menuItem: MenuItem) => (
-                <Button
-                  key={menuItem.title}
-                  size="sm"
-                  variant="ghost"
-                  w="full"
-                  isActive={pathname === menuItem.path}
-                  leftIcon={<Icon as={menuItem.icon} />}
-                  onClick={() => push(menuItem.path)}
-                >
-                  {menuItem.title}
-                </Button>
-              ))}
-            </VStack>
-          )}
-        </VStack>
-
-        <VStack w="full" spacing={3}>
+      <VStack spacing={8} w="full">
+        <VStack w="full" px={0} spacing={4}>
+          <NextLink href="/" passHref>
+            <Link>
+              <Heading size="sm">unwrapit.me</Heading>
+            </Link>
+          </NextLink>
           <Divider />
-          <Box px={3} w="full">
-            {isLoggedIn ? <SignOutButton /> : <SignInButton />}
-          </Box>
         </VStack>
-      </Container>
-    </HStack>
+        {isLoggedIn && (
+          <VStack w="full" px={3}>
+            {menu.map((menuItem: MenuItem) => (
+              <Button
+                key={menuItem.title}
+                size="sm"
+                variant="ghost"
+                w="full"
+                isActive={pathname === menuItem.path}
+                leftIcon={<Icon as={menuItem.icon} />}
+                onClick={() => push(menuItem.path)}
+              >
+                {menuItem.title}
+              </Button>
+            ))}
+          </VStack>
+        )}
+      </VStack>
+
+      <VStack w="full" spacing={3}>
+        <Divider />
+        <Box px={3} w="full">
+          {isLoggedIn ? <SignOutButton /> : <SignInButton />}
+        </Box>
+      </VStack>
+    </Container>
   );
 };
 
