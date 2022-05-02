@@ -9,10 +9,6 @@ import {
 
 import { useSession } from 'next-auth/react';
 import { User } from '../types/user';
-import {
-  readFromLocalStorage,
-  writeToLocalStorage,
-} from '../utils/local-storage';
 
 type UserContextProps = {
   user: User | null;
@@ -37,8 +33,7 @@ type Props = PropsWithChildren<{}>;
 
 const UserProvider = ({ children }: Props) => {
   const { data: session } = useSession();
-  const user: User | null =
-    readFromLocalStorage('user') || session?.user || null;
+  const user: User | null = session?.user || null;
   const [timePeriod, setTimePeriod] = useState<string>('long_term');
 
   const { push, pathname } = useRouter();
@@ -48,7 +43,6 @@ const UserProvider = ({ children }: Props) => {
       push('/login');
     } else if (user && !authenticatedRoutes.includes(pathname)) {
       push('/');
-      writeToLocalStorage('user', user);
     }
   }, [pathname, session]);
 
