@@ -21,7 +21,7 @@
       "~constants/*": ["constants/*"],
       "~hooks/*": ["hooks/*"],
       "~providers/*": ["providers/*"],
-      "~remotion/*": ["remotion/*"],
+      "~compositions/*": ["compositions/*"],
       "~types/*": ["types/*"],
       "~utils/*": ["utils/*"],
       "~api/*": ["api/*"],

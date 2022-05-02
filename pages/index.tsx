@@ -5,10 +5,10 @@ import { continueRender, delayRender } from 'remotion';
 
 import SettingsPopover from '~components/settings-popover';
 import Spinner from '~components/spinner';
+import Scenes from '~compositions/scenes';
 import useGetTopArtists from '~hooks/query/get-top-artists';
 import useGetTopTracks from '~hooks/query/get-top-tracks';
 import useMediaQuery from '~hooks/use-media-query';
-import Scenes from '~remotion/scenes';
 import getTopGenres from '~utils/get-top-genres';
 import getTrackUris from '~utils/get-track-uris';
 
