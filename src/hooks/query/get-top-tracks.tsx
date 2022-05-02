@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { useUser } from '../../providers/user-provider';
-import { Tracks } from '../../types/track';
-import fetcher from '../../api/fetcher';
+import { useUser } from '~providers/user-provider';
+import { Tracks } from '~types/track';
+import fetcher from '~api/fetcher';
 
 const useGetTopTracks = () => {
   const { timePeriod } = useUser();

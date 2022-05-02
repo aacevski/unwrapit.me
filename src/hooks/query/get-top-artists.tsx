@@ -1,8 +1,8 @@
 import { useQuery } from 'react-query';
 
-import { useUser } from '../../providers/user-provider';
-import { Artists } from '../../types/artist';
-import fetcher from '../../api/fetcher';
+import { useUser } from '~providers/user-provider';
+import { Artists } from '~types/artist';
+import fetcher from '~api/fetcher';
 
 const useGetTopArtists = () => {
   const { timePeriod } = useUser();

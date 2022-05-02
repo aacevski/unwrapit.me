@@ -3,14 +3,14 @@ import { Player, PlayerRef } from '@remotion/player';
 import { useEffect, useRef, useState } from 'react';
 import { continueRender, delayRender } from 'remotion';
 
-import SettingsPopover from '../src/components/settings-popover';
-import Spinner from '../src/components/spinner';
-import useGetTopArtists from '../src/hooks/query/get-top-artists';
-import useGetTopTracks from '../src/hooks/query/get-top-tracks';
-import useMediaQuery from '../src/hooks/use-media-query';
-import Scenes from '../src/remotion/scenes';
-import getTopGenres from '../src/utils/get-top-genres';
-import getTrackUris from '../src/utils/get-track-uris';
+import SettingsPopover from '~components/settings-popover';
+import Spinner from '~components/spinner';
+import useGetTopArtists from '~hooks/query/get-top-artists';
+import useGetTopTracks from '~hooks/query/get-top-tracks';
+import useMediaQuery from '~hooks/use-media-query';
+import Scenes from '~remotion/scenes';
+import getTopGenres from '~utils/get-top-genres';
+import getTrackUris from '~utils/get-track-uris';
 
 const IndexPage = () => {
   const player = useRef<PlayerRef>(null);

@@ -1,6 +1,7 @@
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { VStack, Heading } from '@chakra-ui/react';
-import GenreItem from '../components/genre-item';
+
+import GenreItem from '~components/genre-item';
 
 type Props = {
   genres: string[] | undefined;

@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { ImCog } from 'react-icons/im';
 
-import { useUser } from '../../providers/user-provider';
+import { useUser } from '~providers/user-provider';
 
 const SettingsPopover = ({ ...rest }) => {
   const { timePeriod, setTimePeriod } = useUser();

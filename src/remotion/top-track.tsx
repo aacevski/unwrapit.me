@@ -1,7 +1,8 @@
 import { interpolate, spring, useCurrentFrame, useVideoConfig } from 'remotion';
 import { VStack, Image, Heading } from '@chakra-ui/react';
-import { Track } from '../types/track';
-import Sparkles from '../components/sparkles';
+
+import { Track } from '~types/track';
+import Sparkles from '~components/sparkles';
 
 type Props = {
   track: Track;

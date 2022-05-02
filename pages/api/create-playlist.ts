@@ -1,9 +1,9 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 
-import { Session } from '../../src/types/session';
-import fetcher from '../../src/api/fetcher';
-import parseTimePeriod from '../../src/utils/parse-time-period';
+import { Session } from '~types/session';
+import fetcher from '~api/fetcher';
+import parseTimePeriod from '~utils/parse-time-period';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'POST') {

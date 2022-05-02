@@ -1,7 +1,7 @@
 import { VStack, Heading, Link, Text } from '@chakra-ui/react';
 
 import { signIn } from 'next-auth/react';
-import { CALLBACK_URL } from '../src/constants/urls';
+import { CALLBACK_URL } from '~constants/urls';
 
 const Login = () => {
   return (

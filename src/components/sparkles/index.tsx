@@ -1,13 +1,13 @@
 import React, { PropsWithChildren, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 
-import { comeInOut, spin } from '../../constants/animation';
-import { path } from '../../constants/svg';
-import usePrefersReducedMotion from '../../hooks/use-prefers-reduced-motion';
-import useRandomInterval from '../../hooks/use-random-interval';
-import generateSparkle from '../../utils/generate-sparkle';
-import range from '../../utils/range';
-import { Sparkle } from '../../types/sparkle';
+import { comeInOut, spin } from '~constants/animation';
+import { path } from '~constants/svg';
+import usePrefersReducedMotion from '~hooks/use-prefers-reduced-motion';
+import useRandomInterval from '~hooks/use-random-interval';
+import generateSparkle from '~utils/generate-sparkle';
+import range from '~utils/range';
+import { Sparkle } from '~types/sparkle';
 
 type Props = PropsWithChildren<{}>;
 

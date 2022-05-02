@@ -6,9 +6,9 @@ import {
   useEffect,
   useState,
 } from 'react';
-
 import { useSession } from 'next-auth/react';
-import { User } from '../types/user';
+
+import { User } from '~types/user';
 
 type UserContextProps = {
   user: User | null;

@@ -12,12 +12,12 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import ScrollToTheTopButton from '../src/components/scroll-to-the-top-button';
-import SettingsPopover from '../src/components/settings-popover';
-import Spinner from '../src/components/spinner';
-import useGetTopArtists from '../src/hooks/query/get-top-artists';
-import useMediaQuery from '../src/hooks/use-media-query';
-import { Artist } from '../src/types/artist';
+import ScrollToTheTopButton from '~components/scroll-to-the-top-button';
+import SettingsPopover from '~components/settings-popover';
+import Spinner from '~components/spinner';
+import useGetTopArtists from '~hooks/query/get-top-artists';
+import useMediaQuery from '~hooks/use-media-query';
+import { Artist } from '~types/artist';
 
 const TopArtists = () => {
   const isMobile = useMediaQuery(992);
@@ -57,12 +57,15 @@ const TopArtists = () => {
         templateColumns={{
           base: 'repeat(1, 1fr)',
           md: 'repeat(2, 1fr)',
-          lg: 'repeat(3, 1fr)',
+          '2xl': 'repeat(3, 1fr)',
         }}
         gap={20}
       >
         {artists?.items.map((artist: Artist) => (
-          <GridItem key={artist.name} flex={1}>
+          <GridItem
+            key={`${artist.name}-${artist.external_urls.spotify}`}
+            flex={1}
+          >
             <LinkBox h="full">
               <Box
                 role="group"

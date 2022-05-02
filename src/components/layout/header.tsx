@@ -1,4 +1,4 @@
-import useMediaQuery from '../../hooks/use-media-query';
+import useMediaQuery from '~hooks/use-media-query';
 import Sidebar from './side-bar';
 import Topbar from './top-bar';
 

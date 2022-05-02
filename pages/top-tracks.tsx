@@ -12,12 +12,12 @@ import {
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
 
-import ScrollToTheTopButton from '../src/components/scroll-to-the-top-button';
-import SettingsPopover from '../src/components/settings-popover';
-import Spinner from '../src/components/spinner';
-import useGetTopTracks from '../src/hooks/query/get-top-tracks';
-import useMediaQuery from '../src/hooks/use-media-query';
-import { Track } from '../src/types/track';
+import ScrollToTheTopButton from '~components/scroll-to-the-top-button';
+import SettingsPopover from '~components/settings-popover';
+import Spinner from '~components/spinner';
+import useGetTopTracks from '~hooks/query/get-top-tracks';
+import useMediaQuery from '~hooks/use-media-query';
+import { Track } from '~types/track';
 
 const TopTracks = () => {
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
@@ -62,7 +62,10 @@ const TopTracks = () => {
         gap={20}
       >
         {tracks?.items.map((track: Track) => (
-          <GridItem key={`${track.name}-${track.album.name}`} flex={1}>
+          <GridItem
+            key={`${track.name}-${track.album.name}-${track.album.images[0].url}`}
+            flex={1}
+          >
             <LinkBox h="full">
               <Box
                 role="group"

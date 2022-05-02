@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 
-import { whileTap, transition } from '../../constants/motion';
+import { whileTap, transition } from '~constants/motion';
 
 export const SunIcon = () => {
   const raysVariants = {

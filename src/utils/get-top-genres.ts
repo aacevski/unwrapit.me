@@ -1,4 +1,4 @@
-import { Artist, Artists } from '../types/artist';
+import { Artist, Artists } from '~types/artist';
 
 const getTopGenres = (artists: Artists | undefined) => {
   if (!artists) return;

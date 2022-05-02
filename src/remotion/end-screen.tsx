@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { VStack, Heading, Button } from '@chakra-ui/react';
 import Confetti from 'react-confetti';
 
-import useCreatePlaylist from '../hooks/mutation/create-playlist';
+import useCreatePlaylist from '~hooks/mutation/create-playlist';
 
 type Props = {
   trackUris: string[] | undefined;

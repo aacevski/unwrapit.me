@@ -1,4 +1,4 @@
-import { Track, Tracks } from '../types/track';
+import { Track, Tracks } from '~types/track';
 
 const getTrackUris = (tracks: Tracks | undefined) => {
   if (!tracks) return [];

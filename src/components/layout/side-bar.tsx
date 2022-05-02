@@ -13,8 +13,8 @@ import { useSession } from 'next-auth/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 
-import menu from '../../constants/menu';
-import { MenuItem } from '../../types/menu-item';
+import menu from '~constants/menu';
+import { MenuItem } from '~types/menu-item';
 import SignInButton from './sign-in-button';
 import SignOutButton from './sign-out-button';
 

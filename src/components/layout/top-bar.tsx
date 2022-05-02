@@ -19,10 +19,10 @@ import NextLink from 'next/link';
 import { useRouter } from 'next/router';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 
-import menu from '../../constants/menu';
-import { useUser } from '../../providers/user-provider';
-import { MenuItem } from '../../types/menu-item';
-import SettingsPopover from '../settings-popover';
+import menu from '~constants/menu';
+import { useUser } from '~providers/user-provider';
+import { MenuItem } from '~types/menu-item';
+import SettingsPopover from '~components/settings-popover';
 import SignInButton from './sign-in-button';
 import SignOutButton from './sign-out-button';
 

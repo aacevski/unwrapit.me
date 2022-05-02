@@ -1,7 +1,7 @@
 import { useMutation } from 'react-query';
 
-import { useUser } from '../../providers/user-provider';
-import fetcher from '../../api/fetcher';
+import { useUser } from '~providers/user-provider';
+import fetcher from '~api/fetcher';
 
 const useCreatePlaylist = (trackUris: string[] | undefined) => {
   const { timePeriod } = useUser();
