@@ -15,6 +15,7 @@ import { useRouter } from 'next/router';
 
 import menu from '~constants/menu';
 import { MenuItem } from '~types/menu-item';
+import Logo from '~components/icons/logo';
 import SignInButton from './sign-in-button';
 import SignOutButton from './sign-out-button';
 
@@ -43,7 +44,7 @@ const Sidebar = () => {
         <VStack w="full" px={0} spacing={4}>
           <NextLink href="/" passHref>
             <Link>
-              <Heading size="sm">unwrapit.me</Heading>
+              <Logo px={3} />
             </Link>
           </NextLink>
           <Divider />

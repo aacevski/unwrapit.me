@@ -41,18 +41,16 @@ const TopTracks = () => {
   return (
     <VStack pt={32} position="relative">
       {scrollToTheTopVisible && <ScrollToTheTopButton />}
-      {!isMobile && (
-        <SettingsPopover
-          position="fixed"
-          bottom={6}
-          right={6}
-          bgColor="rgba(0, 0, 0, 0.9)"
-          _hover={{
-            bgColor: 'rgba(0, 0, 0, 1)',
-            transform: 'scale(1.1)',
-          }}
-        />
-      )}
+      <SettingsPopover
+        position="fixed"
+        bottom={6}
+        right={6}
+        bgColor="rgba(0, 0, 0, 0.9)"
+        _hover={{
+          bgColor: 'rgba(0, 0, 0, 1)',
+          transform: 'scale(1.1)',
+        }}
+      />
       <Grid
         templateColumns={{
           base: 'repeat(1, 1fr)',

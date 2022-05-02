@@ -22,9 +22,9 @@ import { HiOutlineMenuAlt1 } from 'react-icons/hi';
 import menu from '~constants/menu';
 import { useUser } from '~providers/user-provider';
 import { MenuItem } from '~types/menu-item';
-import SettingsPopover from '~components/settings-popover';
 import SignInButton from './sign-in-button';
 import SignOutButton from './sign-out-button';
+import Logo from '~components/icons/logo';
 
 const Topbar = () => {
   const { user } = useUser();
@@ -52,6 +52,11 @@ const Topbar = () => {
       backdropBlur="24px"
       zIndex={100}
     >
+      <NextLink href="/" passHref>
+        <Link>
+          <Logo w={28} />
+        </Link>
+      </NextLink>
       <IconButton
         variant="ghost"
         aria-label="Navigation Menu"
@@ -63,7 +68,7 @@ const Topbar = () => {
 
       <Drawer
         isOpen={isNavigationOpen}
-        placement="left"
+        placement="right"
         onClose={onNavigationClose}
         size="sm"
       >
@@ -110,7 +115,6 @@ const Topbar = () => {
           </VStack>
         </DrawerContent>
       </Drawer>
-      {user && <SettingsPopover variant="ghost" />}
     </HStack>
   );
 };

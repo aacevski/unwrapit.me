@@ -30,6 +30,7 @@ const SettingsPopover = ({ ...rest }) => {
           icon={<Icon as={ImCog} />}
           onClick={onOpen}
           {...rest}
+          zIndex={100}
         />
       </PopoverTrigger>
       <Portal>
