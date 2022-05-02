@@ -17,7 +17,7 @@ import { ImCog } from 'react-icons/im';
 
 import { useUser } from '../../providers/user-provider';
 
-const SettingsPopover = () => {
+const SettingsPopover = ({ ...rest }) => {
   const { timePeriod, setTimePeriod } = useUser();
   const { onOpen } = useDisclosure();
 
@@ -25,18 +25,11 @@ const SettingsPopover = () => {
     <Popover placement="top-end">
       <PopoverTrigger>
         <IconButton
-          position="fixed"
-          bottom={6}
-          right={6}
           aria-label="Settings"
-          bgColor="rgba(0, 0, 0, 0.9)"
           transition="all 0.2s"
-          _hover={{
-            bgColor: 'rgba(0, 0, 0, 1)',
-            transform: 'scale(1.1)',
-          }}
           icon={<Icon as={ImCog} />}
           onClick={onOpen}
+          {...rest}
         />
       </PopoverTrigger>
       <Portal>

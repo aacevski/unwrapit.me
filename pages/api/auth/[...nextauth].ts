@@ -30,7 +30,7 @@ export default NextAuth({
       }
 
       if (token) {
-        if (Date.now() > token.expiresAt) {
+        if (Math.floor(Date.now()) >= token.expiresAt * 1000) {
           const refreshedToken = await refreshToken(token);
 
           return refreshedToken;

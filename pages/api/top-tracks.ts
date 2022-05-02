@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import { getSession } from 'next-auth/react';
 
 import { Session } from '../../src/types/session';
-import fetcher from '../../src/utils/fetcher';
+import fetcher from '../../src/api/fetcher';
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== 'GET') {

@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import { useQuery } from 'react-query';
 import { VStack, Heading, Button } from '@chakra-ui/react';
 import Confetti from 'react-confetti';
 
-import fetcher from '../utils/fetcher';
+import useCreatePlaylist from '../hooks/mutation/create-playlist';
 
 type Props = {
   trackUris: string[] | undefined;
@@ -11,26 +10,10 @@ type Props = {
 
 const EndScreen = ({ trackUris }: Props) => {
   const [isPlaylistGenerated, setIsPlaylistGenerated] = useState(false);
-
-  const { refetch } = useQuery(
-    'create-playlist',
-    () =>
-      fetcher('/api/create-playlist', {
-        method: 'POST',
-        body: JSON.stringify({
-          trackUris,
-        }),
-      }),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: false,
-      enabled: false,
-    }
-  );
+  const { mutate } = useCreatePlaylist(trackUris);
 
   const onClick = () => {
-    refetch();
+    mutate();
     setIsPlaylistGenerated(true);
   };
 

@@ -11,34 +11,23 @@ import {
   Icon,
   IconButton,
   Link,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
-  Select,
   useDisclosure,
   VStack,
-  Text,
 } from '@chakra-ui/react';
 import { useSession } from 'next-auth/react';
 import NextLink from 'next/link';
 import { useRouter } from 'next/router';
-import { useContext } from 'react';
 import { HiOutlineMenuAlt1 } from 'react-icons/hi';
-import { ImCog } from 'react-icons/im';
 
 import menu from '../../constants/menu';
-import { UserContext } from '../../providers/user-provider';
+import { useUser } from '../../providers/user-provider';
 import { MenuItem } from '../../types/menu-item';
+import SettingsPopover from '../settings-popover';
 import SignInButton from './sign-in-button';
 import SignOutButton from './sign-out-button';
 
 const Topbar = () => {
-  const userContext = useContext(UserContext);
-  const { timePeriod, setTimePeriod, user } = userContext;
+  const { user } = useUser();
   const { data: isLoggedIn } = useSession();
   const { pathname, push } = useRouter();
   const {
@@ -46,8 +35,6 @@ const Topbar = () => {
     onOpen: onNavigationOpen,
     onClose: onNavigationClose,
   } = useDisclosure();
-
-  const { onOpen: onSettingsOpen } = useDisclosure();
 
   return (
     <HStack
@@ -123,43 +110,7 @@ const Topbar = () => {
           </VStack>
         </DrawerContent>
       </Drawer>
-      {user && (
-        <Popover placement="top-end">
-          <PopoverTrigger>
-            <IconButton
-              variant="ghost"
-              aria-label="Settings"
-              icon={<Icon as={ImCog} />}
-              color="white"
-              onClick={onSettingsOpen}
-              size="sm"
-            />
-          </PopoverTrigger>
-          <Portal>
-            <PopoverContent bg="rgba(0, 0, 0, 1)" backdropBlur="24px">
-              <PopoverArrow />
-              <PopoverCloseButton />
-              <PopoverBody p={4}>
-                <Heading mb={4} size="md">
-                  settings
-                </Heading>
-                <Text fontSize="sm" mb={2}>
-                  time period:
-                </Text>
-                <Select
-                  size="sm"
-                  defaultValue={timePeriod}
-                  onChange={(e) => setTimePeriod(e.target.value)}
-                >
-                  <option value="short_term">Short Term</option>
-                  <option value="medium_term">Medium Term</option>
-                  <option value="long_term">Long Term</option>
-                </Select>
-              </PopoverBody>
-            </PopoverContent>
-          </Portal>
-        </Popover>
-      )}
+      {user && <SettingsPopover variant="ghost" />}
     </HStack>
   );
 };

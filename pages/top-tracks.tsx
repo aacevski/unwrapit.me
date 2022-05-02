@@ -11,36 +11,18 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 import ScrollToTheTopButton from '../src/components/scroll-to-the-top-button';
 import SettingsPopover from '../src/components/settings-popover';
 import Spinner from '../src/components/spinner';
+import useGetTopTracks from '../src/hooks/query/get-top-tracks';
 import useMediaQuery from '../src/hooks/use-media-query';
-import { useUser } from '../src/providers/user-provider';
-import { Track, Tracks } from '../src/types/track';
-import fetcher from '../src/utils/fetcher';
+import { Track } from '../src/types/track';
 
 const TopTracks = () => {
-  const [tracks, setTracks] = useState<Tracks>();
-  const { timePeriod } = useUser();
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
   const isMobile = useMediaQuery(992);
-
-  const { data, isLoading } = useQuery<Tracks>(
-    [`get-top-tracks`, timePeriod],
-    () => fetcher(`/api/top-tracks?time_range=${timePeriod}`),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
-
-  useEffect(() => {
-    if (data) {
-      setTracks(data);
-    }
-  }, [data, timePeriod]);
+  const { data: tracks, isLoading } = useGetTopTracks();
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -59,7 +41,18 @@ const TopTracks = () => {
   return (
     <VStack pt={32} position="relative">
       {scrollToTheTopVisible && <ScrollToTheTopButton />}
-      {!isMobile && <SettingsPopover />}
+      {!isMobile && (
+        <SettingsPopover
+          position="fixed"
+          bottom={6}
+          right={6}
+          bgColor="rgba(0, 0, 0, 0.9)"
+          _hover={{
+            bgColor: 'rgba(0, 0, 0, 1)',
+            transform: 'scale(1.1)',
+          }}
+        />
+      )}
       <Grid
         templateColumns={{
           base: 'repeat(1, 1fr)',

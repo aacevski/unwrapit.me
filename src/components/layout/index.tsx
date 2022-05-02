@@ -1,35 +1,11 @@
-import { PropsWithChildren, useContext } from 'react';
-import {
-  VStack,
-  Container,
-  IconButton,
-  Icon,
-  useDisclosure,
-  Popover,
-  PopoverArrow,
-  PopoverBody,
-  PopoverCloseButton,
-  PopoverContent,
-  PopoverTrigger,
-  Portal,
-  Select,
-  Heading,
-  Text,
-} from '@chakra-ui/react';
-import { ImCog } from 'react-icons/im';
+import { PropsWithChildren } from 'react';
+import { VStack, Container } from '@chakra-ui/react';
 
 import Header from './header';
-import useMediaQuery from '../../hooks/use-media-query';
-import { UserContext } from '../../providers/user-provider';
 
 type Props = PropsWithChildren<{}>;
 
 const Layout = ({ children }: Props) => {
-  const isMobile = useMediaQuery(992);
-  const { onOpen } = useDisclosure();
-  const userContext = useContext(UserContext);
-  const { setTimePeriod, user } = userContext;
-
   return (
     <Container
       display="flex"

@@ -11,29 +11,18 @@ import {
   VStack,
 } from '@chakra-ui/react';
 import { useEffect, useState } from 'react';
-import { useQuery } from 'react-query';
 
 import ScrollToTheTopButton from '../src/components/scroll-to-the-top-button';
 import SettingsPopover from '../src/components/settings-popover';
 import Spinner from '../src/components/spinner';
+import useGetTopArtists from '../src/hooks/query/get-top-artists';
 import useMediaQuery from '../src/hooks/use-media-query';
-import { useUser } from '../src/providers/user-provider';
-import { Artist, Artists } from '../src/types/artist';
-import fetcher from '../src/utils/fetcher';
+import { Artist } from '../src/types/artist';
 
 const TopArtists = () => {
-  const { timePeriod } = useUser();
   const isMobile = useMediaQuery(992);
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
-
-  const { data: artists, isLoading } = useQuery<Artists>(
-    [`get-top-artists`, timePeriod],
-    () => fetcher(`/api/top-artists?time_range=${timePeriod}`),
-    {
-      refetchOnMount: false,
-      refetchOnWindowFocus: false,
-    }
-  );
+  const { data: artists, isLoading } = useGetTopArtists();
 
   useEffect(() => {
     window.addEventListener('scroll', () => {
@@ -52,7 +41,18 @@ const TopArtists = () => {
   return (
     <VStack pt={32}>
       {scrollToTheTopVisible && <ScrollToTheTopButton />}
-      {!isMobile && <SettingsPopover />}
+      {!isMobile && (
+        <SettingsPopover
+          position="fixed"
+          bottom={6}
+          right={6}
+          bgColor="rgba(0, 0, 0, 0.9)"
+          _hover={{
+            bgColor: 'rgba(0, 0, 0, 1)',
+            transform: 'scale(1.1)',
+          }}
+        />
+      )}
       <Grid
         templateColumns={{
           base: 'repeat(1, 1fr)',
