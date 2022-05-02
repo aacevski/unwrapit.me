@@ -1,7 +1,6 @@
 import { Container, VStack } from '@chakra-ui/react';
 import { Player, PlayerRef } from '@remotion/player';
-import { useEffect, useRef, useState } from 'react';
-import { continueRender, delayRender } from 'remotion';
+import { useRef } from 'react';
 
 import SettingsPopover from '~components/settings-popover';
 import Spinner from '~components/spinner';
@@ -15,20 +14,12 @@ import getTrackUris from '~utils/get-track-uris';
 const IndexPage = () => {
   const player = useRef<PlayerRef>(null);
   const isMobile = useMediaQuery(992);
-  const [handle] = useState(() => delayRender());
   const { data: tracks, isLoading: isLoadingTracks } = useGetTopTracks();
   const { data: artists, isLoading: isLoadingArtists } = useGetTopArtists();
 
   const isLoading = isLoadingArtists || isLoadingTracks;
   const trackUris = getTrackUris(tracks);
   const genres = getTopGenres(artists);
-
-  useEffect(() => {
-    if (artists && tracks) {
-      continueRender(handle);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [artists, tracks]);
 
   if (isLoading) {
     return <Spinner />;
