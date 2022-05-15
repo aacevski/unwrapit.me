@@ -3,8 +3,6 @@ import {
   Button,
   Container,
   Divider,
-  Heading,
-  HStack,
   Icon,
   Link,
   VStack,
