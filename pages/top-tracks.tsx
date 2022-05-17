@@ -16,12 +16,10 @@ import ScrollToTheTopButton from '~components/scroll-to-the-top-button';
 import SettingsPopover from '~components/settings-popover';
 import Spinner from '~components/spinner';
 import useGetTopTracks from '~hooks/query/get-top-tracks';
-import useMediaQuery from '~hooks/use-media-query';
 import { Track } from '~types/track';
 
 const TopTracks = () => {
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
-  const isMobile = useMediaQuery(992);
   const { data: tracks, isLoading } = useGetTopTracks();
 
   useEffect(() => {

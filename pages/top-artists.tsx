@@ -16,11 +16,9 @@ import ScrollToTheTopButton from '~components/scroll-to-the-top-button';
 import SettingsPopover from '~components/settings-popover';
 import Spinner from '~components/spinner';
 import useGetTopArtists from '~hooks/query/get-top-artists';
-import useMediaQuery from '~hooks/use-media-query';
 import { Artist } from '~types/artist';
 
 const TopArtists = () => {
-  const isMobile = useMediaQuery(992);
   const [scrollToTheTopVisible, setScrollToTheTopVisible] = useState(false);
   const { data: artists, isLoading } = useGetTopArtists();
 
