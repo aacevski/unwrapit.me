@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import * as fs from 'fs';
 import { getSession } from 'next-auth/react';
 
 import { Session } from '~types/session';
@@ -14,6 +15,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = (await getSession({ req })) as Session;
   const trackUris = JSON.parse(req.body).trackUris;
   const timePeriod = parseTimePeriod(JSON.parse(req.body).timePeriod);
+  const playlistImageEncoded = fs.readFileSync(
+    './src/data/playlist_image_encoded.txt',
+    'utf8'
+  );
 
   const createPlaylist = await fetcher(
     `https://api.spotify.com/v1/users/${session?.user?.sub}/playlists`,
@@ -44,7 +49,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  res.status(200).json(createPlaylist && updatePlaylist);
+  const updatedPlaylistImage = await fetcher(
+    `https://api.spotify.com/v1/playlists/${createPlaylist.id}/images`,
+    {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${session?.user?.accessToken}`,
+        contentType: 'image/jpeg',
+      },
+      body: playlistImageEncoded,
+    }
+  );
+
+  res
+    .status(200)
+    .json(createPlaylist && updatePlaylist && updatedPlaylistImage);
 };
 
 export default handler;
