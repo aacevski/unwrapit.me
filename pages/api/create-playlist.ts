@@ -49,21 +49,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  const updatedPlaylistImage = await fetcher(
-    `https://api.spotify.com/v1/playlists/${createPlaylist.id}/images`,
-    {
-      method: 'PUT',
-      headers: {
-        Authorization: `Bearer ${session?.user?.accessToken}`,
-        contentType: 'image/jpeg',
-      },
-      body: playlistImageEncoded,
-    }
-  );
-
-  res
-    .status(200)
-    .json(createPlaylist && updatePlaylist && updatedPlaylistImage);
+  res.status(200).json(createPlaylist && updatePlaylist);
 };
 
 export default handler;
