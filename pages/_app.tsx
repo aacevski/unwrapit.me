@@ -20,7 +20,7 @@ function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
       <SessionProvider session={session}>
         <ChakraProvider theme={theme}>
           <NextSeo
-            title="unwrapit"
+            title="unwrapit.me - your music history unwrapped."
             description="Have you ever wanted to see your most listened artists and tracks anytime of the year? with unwrapit.me you can!"
             openGraph={{
               url: 'https://unwrapit.vercel.app',
