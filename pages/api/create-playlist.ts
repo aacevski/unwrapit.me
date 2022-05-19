@@ -15,10 +15,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const session = (await getSession({ req })) as Session;
   const trackUris = JSON.parse(req.body).trackUris;
   const timePeriod = parseTimePeriod(JSON.parse(req.body).timePeriod);
-  const playlistImageEncoded = fs.readFileSync(
-    './src/data/playlist_image_encoded.txt',
-    'utf8'
-  );
 
   const createPlaylist = await fetcher(
     `https://api.spotify.com/v1/users/${session?.user?.sub}/playlists`,
@@ -26,6 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       method: 'POST',
       headers: {
         Authorization: `Bearer ${session?.user?.accessToken}`,
+        ContentType: 'application/json',
       },
       body: JSON.stringify({
         name: `unwrapit.me - ${timePeriod}`,
@@ -42,6 +39,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       method: 'PUT',
       headers: {
         Authorization: `Bearer ${session?.user?.accessToken}`,
+        ContentType: 'application/json',
       },
       body: JSON.stringify({
         uris: trackUris,
