@@ -46,6 +46,7 @@ const IndexPage = () => {
               compositionWidth={1080}
               fps={30}
               style={{
+                userSelect: 'none',
                 margin: 'auto',
                 width: '100%',
                 display: 'flex',
