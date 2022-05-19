@@ -4,11 +4,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 const Doc = () => (
   <Html lang="en">
     <Head>
-      <script
-        defer
-        data-domain="unwrapit.vercel.app"
-        src="https://plausible.io/js/plausible.js"
-      ></script>
+      <script async src="https://cdn.splitbee.io/sb.js"></script>
     </Head>
     <body>
       <Main />
