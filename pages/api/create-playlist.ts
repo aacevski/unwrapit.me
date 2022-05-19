@@ -32,7 +32,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  const updatePlaylist = await fetcher(
+  await fetcher(
     `https://api.spotify.com/v1/playlists/${createPlaylist.id}/tracks`,
     {
       method: 'PUT',
@@ -46,7 +46,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
   );
 
-  res.status(200).json(createPlaylist && updatePlaylist);
+  res.status(200).json(createPlaylist);
 };
 
 export default handler;
