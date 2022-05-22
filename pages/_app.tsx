@@ -8,7 +8,6 @@ import { ChakraProvider } from '@chakra-ui/react';
 import UserProvider from '../src/providers/user-provider';
 import Layout from '../src/components/layout';
 import theme from '../src/theme';
-
 import '../style.css';
 
 const queryClient = new QueryClient();
