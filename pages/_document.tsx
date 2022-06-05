@@ -1,11 +1,10 @@
 import React from 'react';
 import { Html, Head, Main, NextScript } from 'next/document';
+import splitbee from '@splitbee/web';
 
 const Doc = () => (
   <Html lang="en">
-    <Head>
-      <script async src="https://cdn.splitbee.io/sb.js"></script>
-    </Head>
+    <Head />
     <body>
       <Main />
       <NextScript />

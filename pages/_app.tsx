@@ -4,13 +4,21 @@ import { QueryClient, QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { SessionProvider } from 'next-auth/react';
 import { ChakraProvider } from '@chakra-ui/react';
+import splitbee from '@splitbee/web';
 
 import UserProvider from '../src/providers/user-provider';
 import Layout from '../src/components/layout';
 import theme from '../src/theme';
 import '../style.css';
+import { SPLITBEE_TOKEN } from '~constants/urls';
 
 const queryClient = new QueryClient();
+
+splitbee.init({
+  scriptUrl: "https://cdn.splitbee.io/sb.js",
+  apiUrl: "https://hive.splitbee.io",
+  token: SPLITBEE_TOKEN,
+})
 
 function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
   return (

@@ -7,6 +7,7 @@ module.exports = {
   ...nextConfig,
   publicRuntimeConfig: {
     CALLBACK_URL: process.env.CALLBACK_URL || 'http://localhost:3000',
+    SPLITBEE_TOKEN: process.env.SPLITBEE_TOKEN || '',
   },
   webpack(config) {
     config.module.rules.push({

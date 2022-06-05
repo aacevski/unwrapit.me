@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { VStack, Heading, Button } from '@chakra-ui/react';
 import Confetti from 'react-confetti';
+import splitbee from '@splitbee/web';
 
 import useCreatePlaylist from '~hooks/mutation/create-playlist';
+import { useUser } from '~providers/user-provider';
 
 type Props = {
   trackUris: string[] | undefined;
@@ -10,11 +12,15 @@ type Props = {
 
 const EndScreen = ({ trackUris }: Props) => {
   const [isPlaylistGenerated, setIsPlaylistGenerated] = useState(false);
+  const { timePeriod } = useUser();
   const { mutate } = useCreatePlaylist(trackUris);
 
   const onClick = () => {
     mutate();
     setIsPlaylistGenerated(true);
+    splitbee.track('playlist-created', {
+      timePeriod: timePeriod
+    });
   };
 
   return (
